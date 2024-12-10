@@ -349,564 +349,870 @@
       </div>
    </body>
 </html><htmlCode>
-<div id="root" class="w-full min-h-screen bg-black">
-    <section id="neural_canvas" class="relative w-full min-h-screen overflow-hidden">
-        <!-- Neural network background with gradient -->
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-accent-900/80 to-secondary-900/90"></div>
+<div id="root">
+  <section id="navbar_hero" class="relative min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-accent-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-transparent backdrop-blur-sm z-50 transition-all duration-300" x-data="{ isScrolled: false, isOpen: false }" 
+         @scroll.window="isScrolled = (window.pageYOffset > 20)">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo/Name -->
+          <div class="flex-shrink-0">
+            <a href="#" class="text-xl font-heading font-bold">Shyam Rao Sindhia</a>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <div class="hidden md:flex space-x-8">
+            <a href="#about" class="hover:text-accent-300 transition-colors">About</a>
+            <a href="#expertise" class="hover:text-accent-300 transition-colors">Expertise</a>
+            <a href="#projects" class="hover:text-accent-300 transition-colors">Projects</a>
+            <a href="#research" class="hover:text-accent-300 transition-colors">Research</a>
+            <a href="#contact" class="hover:text-accent-300 transition-colors">Contact</a>
+          </div>
+
+          <!-- Mobile menu button -->
+          <div class="md:hidden">
+            <button @click="isOpen = !isOpen" class="p-2 rounded-md hover:bg-primary-700 focus:outline-none">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation -->
+      <div class="md:hidden" x-show="isOpen" @click.away="isOpen = false" x-transition>
+        <div class="px-2 pt-2 pb-3 space-y-1 bg-primary-800">
+          <a href="#about" class="block px-3 py-2 hover:bg-primary-700 rounded-md">About</a>
+          <a href="#expertise" class="block px-3 py-2 hover:bg-primary-700 rounded-md">Expertise</a>
+          <a href="#projects" class="block px-3 py-2 hover:bg-primary-700 rounded-md">Projects</a>
+          <a href="#research" class="block px-3 py-2 hover:bg-primary-700 rounded-md">Research</a>
+          <a href="#contact" class="block px-3 py-2 hover:bg-primary-700 rounded-md">Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="absolute inset-0 z-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/90 to-accent-900/90"></div>
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1)_0%,rgba(0,0,0,0.1)_100%)]"></div>
+    </div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
+      <div class="text-center space-y-8">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight animate-fade-in">
+          Where Design Meets<br/>
+          <span class="bg-gradient-to-r from-accent-400 to-secondary-400 text-transparent bg-clip-text">
+            Neuroscience, AI, and Creativity
+          </span>
+        </h1>
         
-        <!-- Animated neural network overlay -->
-        <div class="absolute inset-0 opacity-30">
-            <div class="absolute w-full h-full animate-pulse-slow">
-                <div class="absolute w-2 h-2 bg-primary-400 rounded-full top-1/4 left-1/4"></div>
-                <div class="absolute w-2 h-2 bg-accent-400 rounded-full top-1/3 left-1/2"></div>
-                <div class="absolute w-2 h-2 bg-secondary-400 rounded-full top-2/3 left-1/3"></div>
-                <div class="absolute w-2 h-2 bg-primary-400 rounded-full top-1/2 right-1/4"></div>
-                <!-- Neural connections -->
-                <div class="absolute h-px bg-gradient-to-r from-primary-400 to-accent-400 transform rotate-45 w-32 top-1/4 left-1/4"></div>
-                <div class="absolute h-px bg-gradient-to-r from-accent-400 to-secondary-400 transform -rotate-45 w-32 top-1/3 left-1/2"></div>
+        <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-300 animate-slide-up">
+          Exploring interdisciplinary solutions at the intersection of neuroscience, artificial intelligence, and design to drive impactful innovation in technology.
+        </p>
+
+        <div class="flex justify-center space-x-4 animate-slide-up">
+          <a href="#contact" class="px-6 py-3 bg-accent-500 hover:bg-accent-600 rounded-lg font-semibold transition-colors">
+            Get in Touch
+          </a>
+          <a href="#expertise" class="px-6 py-3 border-2 border-white hover:bg-white/10 rounded-lg font-semibold transition-colors">
+            Explore My Work
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+      </svg>
+    </div>
+  </section>
+</div>
+</htmlCode><htmlCode>
+<div id="root">
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Image/Visual Side -->
+        <div class="relative">
+          <div class="aspect-ratio-1 rounded-2xl overflow-hidden bg-gradient-to-br from-primary-100 to-accent-50 p-8">
+            <!-- Abstract Neural Network Visual -->
+            <div class="grid grid-cols-3 gap-4 opacity-80">
+              <div class="w-full h-32 bg-primary-200 rounded-lg animate-pulse-slow"></div>
+              <div class="w-full h-24 bg-accent-200 rounded-lg animate-pulse-slow delay-100"></div>
+              <div class="w-full h-28 bg-secondary-200 rounded-lg animate-pulse-slow delay-200"></div>
+              <div class="w-full h-20 bg-accent-300 rounded-lg animate-pulse-slow delay-300"></div>
+              <div class="w-full h-36 bg-primary-300 rounded-lg animate-pulse-slow delay-400"></div>
+              <div class="w-full h-28 bg-secondary-300 rounded-lg animate-pulse-slow delay-500"></div>
             </div>
+          </div>
         </div>
 
-        <!-- Main content -->
-        <div class="relative z-10 flex flex-col items-center justify-center w-full min-h-screen px-4 py-16">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold text-white text-center font-heading mb-8 animate-float">
-                Synaptic Symphonies
-            </h1>
-            
-            <p class="text-xl md:text-2xl text-white/80 text-center max-w-3xl mx-auto mb-12 animate-slide-up">
-                Where Design, Neuroscience, and AI Converge
+        <!-- Content Side -->
+        <div class="space-y-8">
+          <div class="space-y-4">
+            <h2 class="text-3xl font-heading font-bold text-gray-900">Career Vision</h2>
+            <div class="w-20 h-1 bg-accent-500"></div>
+            <p class="text-lg text-gray-700 leading-relaxed">
+              Exploring interdisciplinary solutions at the nexus of neuroscience, artificial intelligence, and design. I aim to leverage my expertise in machine learning, human behavior, and creative problem-solving to drive impactful innovation in technology and design.
             </p>
+          </div>
 
-            <!-- Interactive elements -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl w-full mt-12">
-                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 cursor-pointer group">
-                    <div class="h-1 w-full bg-gradient-to-r from-primary-400 to-accent-400 mb-4 group-hover:animate-pulse"></div>
-                    <h3 class="text-white text-xl font-bold mb-2">Neural Networks</h3>
-                    <p class="text-white/70">Exploring the depths of artificial intelligence</p>
+          <!-- Key Focus Areas -->
+          <div class="space-y-6">
+            <h3 class="text-xl font-heading font-semibold text-gray-800">Key Focus Areas</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Focus Area Cards -->
+              <div class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-brain text-accent-500 text-xl"></i>
+                  <h4 class="font-semibold">Neuroscience Integration</h4>
                 </div>
-
-                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 cursor-pointer group">
-                    <div class="h-1 w-full bg-gradient-to-r from-accent-400 to-secondary-400 mb-4 group-hover:animate-pulse"></div>
-                    <h3 class="text-white text-xl font-bold mb-2">Design Thinking</h3>
-                    <p class="text-white/70">Creative solutions through innovative design</p>
+              </div>
+              <div class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-microchip text-primary-500 text-xl"></i>
+                  <h4 class="font-semibold">AI & Machine Learning</h4>
                 </div>
-
-                <div class="bg-white/10 backdrop-blur-lg rounded-xl p-6 transform hover:scale-105 transition-all duration-300 cursor-pointer group">
-                    <div class="h-1 w-full bg-gradient-to-r from-secondary-400 to-primary-400 mb-4 group-hover:animate-pulse"></div>
-                    <h3 class="text-white text-xl font-bold mb-2">Neuroscience</h3>
-                    <p class="text-white/70">Understanding the human brain</p>
+              </div>
+              <div class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-lightbulb text-secondary-500 text-xl"></i>
+                  <h4 class="font-semibold">Creative Design</h4>
                 </div>
+              </div>
+              <div class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                <div class="flex items-center space-x-3">
+                  <i class="fas fa-leaf text-green-500 text-xl"></i>
+                  <h4 class="font-semibold">Sustainable Innovation</h4>
+                </div>
+              </div>
             </div>
+          </div>
 
-            <!-- Scroll indicator -->
-            <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <div class="w-8 h-12 border-2 border-white/50 rounded-full flex justify-center pt-2">
-                    <div class="w-1 h-3 bg-white/50 rounded-full animate-slide-down"></div>
-                </div>
-            </div>
+          <!-- Call to Action -->
+          <div class="pt-6">
+            <a href="#expertise" class="inline-flex items-center space-x-2 text-accent-600 hover:text-accent-700 font-semibold">
+              <span>Explore My Expertise</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </div>
 </htmlCode><htmlCode>
-<div id="root" class="w-full min-h-screen bg-black">
-    <section id="projects_showcase" class="relative w-full min-h-screen overflow-hidden py-24">
-        <!-- Background elements -->
-        <div class="absolute inset-0 bg-gradient-to-br from-accent-900/90 via-primary-900/80 to-secondary-900/90"></div>
-        
-        <!-- Section content -->
-        <div class="relative z-10 container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-white text-center font-heading mb-16 animate-float">
-                Project Showcases
-            </h2>
+<div id="root">
+  <section id="expertise" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Areas of Expertise</h2>
+        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+      </div>
 
-            <!-- Project Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-                <!-- Personality Prediction Project -->
-                <div class="group relative backdrop-blur-lg bg-white/5 rounded-2xl p-8 transform hover:scale-[1.02] transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-r from-accent-600/20 to-primary-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <div class="relative z-10">
-                        <h3 class="text-2xl font-bold text-white mb-4">Personality Prediction</h3>
-                        
-                        <!-- Interactive layers -->
-                        <div class="relative h-64 mb-6 overflow-hidden rounded-xl">
-                            <div class="absolute inset-0 bg-gradient-to-r from-accent-500/30 to-primary-500/30 transform group-hover:scale-110 transition-transform duration-700"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fas fa-brain text-6xl text-white/50"></i>
-                            </div>
-                        </div>
-
-                        <p class="text-white/80 mb-6">Advanced machine learning models for personality analysis using Random Forest and MLP frameworks.</p>
-                        
-                        <!-- Tech stack pills -->
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full bg-accent-500/20 text-accent-200 text-sm">Random Forest</span>
-                            <span class="px-3 py-1 rounded-full bg-primary-500/20 text-primary-200 text-sm">MLP</span>
-                            <span class="px-3 py-1 rounded-full bg-secondary-500/20 text-secondary-200 text-sm">Python</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Flood Prediction Project -->
-                <div class="group relative backdrop-blur-lg bg-white/5 rounded-2xl p-8 transform hover:scale-[1.02] transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-r from-primary-600/20 to-secondary-600/20 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    
-                    <div class="relative z-10">
-                        <h3 class="text-2xl font-bold text-white mb-4">Flood Prediction Model</h3>
-                        
-                        <!-- Interactive layers -->
-                        <div class="relative h-64 mb-6 overflow-hidden rounded-xl">
-                            <div class="absolute inset-0 bg-gradient-to-r from-primary-500/30 to-secondary-500/30 transform group-hover:scale-110 transition-transform duration-700"></div>
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <i class="fas fa-water text-6xl text-white/50"></i>
-                            </div>
-                        </div>
-
-                        <p class="text-white/80 mb-6">Dynamic flood prediction system using advanced data analytics and machine learning.</p>
-                        
-                        <!-- Tech stack pills -->
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 rounded-full bg-primary-500/20 text-primary-200 text-sm">Deep Learning</span>
-                            <span class="px-3 py-1 rounded-full bg-secondary-500/20 text-secondary-200 text-sm">Time Series</span>
-                            <span class="px-3 py-1 rounded-full bg-accent-500/20 text-accent-200 text-sm">TensorFlow</span>
-                        </div>
-                    </div>
-                </div>
+      <!-- Expertise Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- AI/ML and Data Science -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="p-6 space-y-4">
+            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-robot text-2xl text-primary-600"></i>
             </div>
-
-            <!-- Project navigation dots -->
-            <div class="flex justify-center mt-12 gap-2">
-                <button class="w-3 h-3 rounded-full bg-white/50 hover:bg-white transition-colors duration-300"></button>
-                <button class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-colors duration-300"></button>
-                <button class="w-3 h-3 rounded-full bg-white/30 hover:bg-white transition-colors duration-300"></button>
-            </div>
+            <h3 class="text-xl font-heading font-semibold text-gray-900">AI/ML & Data Science</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-primary-500 mt-1"></i>
+                <span>Clustering & Dimensionality Reduction</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-primary-500 mt-1"></i>
+                <span>PCA & SVD Applications</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-primary-500 mt-1"></i>
+                <span>Personality Prediction Systems</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-primary-500 mt-1"></i>
+                <span>Audio Classification</span>
+              </li>
+            </ul>
+          </div>
         </div>
-    </section>
+
+        <!-- Neuroscience and Cognitive Psychology -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="p-6 space-y-4">
+            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-brain text-2xl text-accent-600"></i>
+            </div>
+            <h3 class="text-xl font-heading font-semibold text-gray-900">Neuroscience & Cognition</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-accent-500 mt-1"></i>
+                <span>Brain-Based ML Analogies</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-accent-500 mt-1"></i>
+                <span>DSP Concept Integration</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-accent-500 mt-1"></i>
+                <span>Signal Processing Applications</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-accent-500 mt-1"></i>
+                <span>Cognitive Pattern Analysis</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Design and Innovation -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+          <div class="p-6 space-y-4">
+            <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center">
+              <i class="fas fa-lightbulb text-2xl text-secondary-600"></i>
+            </div>
+            <h3 class="text-xl font-heading font-semibold text-gray-900">Design & Innovation</h3>
+            <ul class="space-y-2 text-gray-600">
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-secondary-500 mt-1"></i>
+                <span>Neuroscience-Based Design</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-secondary-500 mt-1"></i>
+                <span>Marketing Strategy Enhancement</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-secondary-500 mt-1"></i>
+                <span>User Experience Optimization</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <i class="fas fa-check-circle text-secondary-500 mt-1"></i>
+                <span>Sustainable Technology Solutions</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Skills -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- DSP -->
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">Digital Signal Processing</h3>
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-primary-500 h-2 rounded-full" style="width: 90%"></div>
+              </div>
+              <span class="ml-4 text-sm text-gray-600">90%</span>
+            </div>
+            <p class="text-gray-600">Exploring connections between DSP techniques and brain efficiency in filtering sensory noise.</p>
+          </div>
+        </div>
+
+        <!-- Sustainability -->
+        <div class="bg-white p-6 rounded-xl shadow-lg">
+          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">Sustainable Technologies</h3>
+          <div class="space-y-3">
+            <div class="flex items-center">
+              <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="bg-secondary-500 h-2 rounded-full" style="width: 85%"></div>
+              </div>
+              <span class="ml-4 text-sm text-gray-600">85%</span>
+            </div>
+            <p class="text-gray-600">Crafting innovative, scalable solutions for environmentally conscious technology applications.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 </htmlCode><htmlCode>
-<div id="root" class="w-full min-h-screen bg-black">
-    <section id="research_insights" class="relative w-full min-h-screen overflow-hidden py-24">
-        <!-- Background elements -->
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-secondary-900/80 to-accent-900/90"></div>
-        
-        <!-- Neural network overlay -->
-        <div class="absolute inset-0 opacity-20">
-            <div class="absolute w-full h-full">
-                <!-- Animated neural connections -->
-                <div class="grid grid-cols-6 gap-4 w-full h-full">
-                    <div class="hidden md:block absolute w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-1/6 animate-pulse-slow"></div>
-                    <div class="hidden md:block absolute w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-2/6 animate-pulse-slow delay-100"></div>
-                    <div class="hidden md:block absolute w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-3/6 animate-pulse-slow delay-200"></div>
-                    <div class="hidden md:block absolute w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-4/6 animate-pulse-slow delay-300"></div>
-                    <div class="hidden md:block absolute w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-5/6 animate-pulse-slow delay-400"></div>
-                </div>
+<div id="root">
+  <section id="projects" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Featured Projects</h2>
+        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Project 1: AI-Powered Personality Prediction -->
+        <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+          <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+            <img src="https://placehold.co/600x400/primary/white?text=AI+Personality+Prediction" alt="AI Personality Prediction Project" class="object-cover w-full h-full">
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-heading font-semibold text-gray-900">Personality Prediction System</h3>
+            <p class="text-gray-600">Machine learning model for predicting personality traits using behavioral data analysis.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">Machine Learning</span>
+              <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm">Psychology</span>
             </div>
+          </div>
         </div>
 
-        <!-- Main content -->
-        <div class="relative z-10 container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-white text-center font-heading mb-16 animate-float">
-                Research Insights
-            </h2>
-
-            <!-- Research Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                <!-- Brain-Computer Interface Research -->
-                <div class="group backdrop-blur-lg bg-white/5 rounded-2xl p-8 hover:bg-white/10 transition-all duration-500">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-primary-500/20 mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-microchip text-2xl text-primary-300"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-4">Neural Interfaces</h3>
-                    <p class="text-white/70 mb-6">Exploring the intersection of human cognition and machine learning through advanced BCI systems.</p>
-                    <div class="h-1 w-full bg-gradient-to-r from-primary-400 to-accent-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
-
-                <!-- AI Ethics Research -->
-                <div class="group backdrop-blur-lg bg-white/5 rounded-2xl p-8 hover:bg-white/10 transition-all duration-500">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-accent-500/20 mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-balance-scale text-2xl text-accent-300"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-4">Ethical AI</h3>
-                    <p class="text-white/70 mb-6">Developing frameworks for responsible AI development and implementation.</p>
-                    <div class="h-1 w-full bg-gradient-to-r from-accent-400 to-secondary-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
-
-                <!-- Cognitive Computing -->
-                <div class="group backdrop-blur-lg bg-white/5 rounded-2xl p-8 hover:bg-white/10 transition-all duration-500">
-                    <div class="flex items-center justify-center h-16 w-16 rounded-full bg-secondary-500/20 mb-6 group-hover:scale-110 transition-transform duration-300">
-                        <i class="fas fa-brain text-2xl text-secondary-300"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-white mb-4">Cognitive Systems</h3>
-                    <p class="text-white/70 mb-6">Advancing our understanding of human-like reasoning in artificial intelligence.</p>
-                    <div class="h-1 w-full bg-gradient-to-r from-secondary-400 to-primary-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
+        <!-- Project 2: Audio Classification -->
+        <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+          <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+            <img src="https://placehold.co/600x400/accent/white?text=Audio+Classification" alt="Audio Classification Project" class="object-cover w-full h-full">
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-heading font-semibold text-gray-900">Neural Audio Classifier</h3>
+            <p class="text-gray-600">Deep learning system for audio pattern recognition and classification.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm">Deep Learning</span>
+              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">DSP</span>
             </div>
-
-            <!-- Research Metrics -->
-            <div class="mt-24 grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-                <div class="text-center backdrop-blur-lg bg-white/5 rounded-xl p-6">
-                    <div class="text-4xl font-bold text-white mb-2 animate-float">25+</div>
-                    <div class="text-white/70">Research Papers</div>
-                </div>
-                <div class="text-center backdrop-blur-lg bg-white/5 rounded-xl p-6">
-                    <div class="text-4xl font-bold text-white mb-2 animate-float delay-100">10+</div>
-                    <div class="text-white/70">Patents Filed</div>
-                </div>
-                <div class="text-center backdrop-blur-lg bg-white/5 rounded-xl p-6">
-                    <div class="text-4xl font-bold text-white mb-2 animate-float delay-200">15+</div>
-                    <div class="text-white/70">Collaborations</div>
-                </div>
-                <div class="text-center backdrop-blur-lg bg-white/5 rounded-xl p-6">
-                    <div class="text-4xl font-bold text-white mb-2 animate-float delay-300">500+</div>
-                    <div class="text-white/70">Citations</div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+
+        <!-- Project 3: Flood Prediction -->
+        <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
+          <div class="aspect-w-16 aspect-h-9 bg-gray-100">
+            <img src="https://placehold.co/600x400/secondary/white?text=Flood+Prediction" alt="Flood Prediction Project" class="object-cover w-full h-full">
+          </div>
+          <div class="p-6 space-y-4">
+            <h3 class="text-xl font-heading font-semibold text-gray-900">Flood Prediction AI</h3>
+            <p class="text-gray-600">Predictive modeling for flood risk assessment using environmental data.</p>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm">Data Science</span>
+              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">Sustainability</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Highlights -->
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Research Project 1 -->
+        <div class="bg-gradient-to-br from-primary-50 to-accent-50 p-6 rounded-xl shadow-lg">
+          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">
+            <i class="fas fa-brain text-primary-500 mr-2"></i>
+            Neuroscience-AI Integration
+          </h3>
+          <p class="text-gray-700 mb-4">Exploring brain-inspired algorithms for enhanced machine learning performance.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-gray-500">Ongoing Research</span>
+            <button class="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors">
+              Learn More
+            </button>
+          </div>
+        </div>
+
+        <!-- Research Project 2 -->
+        <div class="bg-gradient-to-br from-secondary-50 to-accent-50 p-6 rounded-xl shadow-lg">
+          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">
+            <i class="fas fa-wave-square text-secondary-500 mr-2"></i>
+            Signal Processing Innovation
+          </h3>
+          <p class="text-gray-700 mb-4">Developing novel DSP techniques inspired by neural information processing.</p>
+          <div class="flex justify-between items-center">
+            <span class="text-sm text-gray-500">Active Development</span>
+            <button class="px-4 py-2 bg-secondary-500 text-white rounded-lg hover:bg-secondary-600 transition-colors">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 </htmlCode><htmlCode>
-<div id="root" class="w-full min-h-screen bg-black">
-    <section id="interactive_lab" class="relative w-full min-h-screen overflow-hidden py-24">
-        <!-- Background elements -->
-        <div class="absolute inset-0 bg-gradient-to-br from-secondary-900/90 via-accent-900/80 to-primary-900/90"></div>
-        
-        <!-- Interactive content -->
-        <div class="relative z-10 container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-white text-center font-heading mb-16 animate-float">
-                Interactive Laboratory
-            </h2>
+<div id="root">
+  <section id="research" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Research & Publications</h2>
+        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+      </div>
 
-            <!-- Voice Classification Module -->
-            <div class="max-w-4xl mx-auto mb-24">
-                <div class="backdrop-blur-lg bg-white/5 rounded-2xl p-8 group">
-                    <h3 class="text-2xl font-bold text-white mb-6">Voice Pattern Analysis</h3>
-                    
-                    <!-- Voice upload interface -->
-                    <div class="relative h-48 mb-8 rounded-xl bg-black/30 flex flex-col items-center justify-center border-2 border-dashed border-white/20 group-hover:border-white/40 transition-colors duration-300">
-                        <i class="fas fa-microphone text-4xl text-white/50 mb-4 group-hover:text-white/70 transition-colors duration-300"></i>
-                        <label class="cursor-pointer">
-                            <span class="px-6 py-2 rounded-full bg-accent-500/20 text-accent-200 hover:bg-accent-500/30 transition-colors duration-300">Upload Voice Sample</span>
-                            <input type="file" accept="audio/*" class="hidden">
-                        </label>
-                    </div>
-
-                    <!-- Visualization area -->
-                    <div class="h-32 bg-black/30 rounded-xl mb-6 overflow-hidden">
-                        <div class="flex items-center justify-center h-full space-x-1">
-                            <!-- Frequency bars -->
-                            <div class="w-1 h-16 bg-primary-400/50 animate-float"></div>
-                            <div class="w-1 h-24 bg-accent-400/50 animate-float delay-100"></div>
-                            <div class="w-1 h-20 bg-secondary-400/50 animate-float delay-200"></div>
-                            <div class="w-1 h-12 bg-primary-400/50 animate-float delay-300"></div>
-                            <div class="w-1 h-28 bg-accent-400/50 animate-float delay-400"></div>
-                            <div class="w-1 h-16 bg-secondary-400/50 animate-float delay-500"></div>
-                        </div>
-                    </div>
-                </div>
+      <!-- Research Areas -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+        <!-- Left Column -->
+        <div class="space-y-8">
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-brain text-primary-600 text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-heading font-semibold text-gray-900">Neuroscience & AI Integration</h3>
             </div>
-
-            <!-- Interactive Demos -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
-                <!-- Neural Network Visualization -->
-                <div class="backdrop-blur-lg bg-white/5 rounded-2xl p-8 group hover:bg-white/10 transition-all duration-500">
-                    <h3 class="text-2xl font-bold text-white mb-6">Neural Network Playground</h3>
-                    <div class="aspect-square rounded-xl bg-black/30 relative overflow-hidden">
-                        <!-- Interactive nodes -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-2 h-2 bg-primary-400 rounded-full absolute animate-pulse"></div>
-                            <div class="w-2 h-2 bg-accent-400 rounded-full absolute top-1/3 left-1/2 animate-pulse delay-100"></div>
-                            <div class="w-2 h-2 bg-secondary-400 rounded-full absolute bottom-1/3 right-1/3 animate-pulse delay-200"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Data Visualization Module -->
-                <div class="backdrop-blur-lg bg-white/5 rounded-2xl p-8 group hover:bg-white/10 transition-all duration-500">
-                    <h3 class="text-2xl font-bold text-white mb-6">Data Patterns</h3>
-                    <div class="aspect-square rounded-xl bg-black/30 relative overflow-hidden">
-                        <!-- Data visualization -->
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <div class="w-32 h-32 border-2 border-accent-400/50 rounded-full animate-spin-slow"></div>
-                            <div class="absolute w-24 h-24 border-2 border-primary-400/50 rounded-full animate-spin-slow animate-pulse"></div>
-                            <div class="absolute w-16 h-16 border-2 border-secondary-400/50 rounded-full animate-spin-slow"></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <i class="fas fa-microscope text-primary-500 mt-1"></i>
+                <p class="text-gray-700">Investigating neural network architectures inspired by brain structure</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i class="fas fa-chart-network text-primary-500 mt-1"></i>
+                <p class="text-gray-700">Developing cognitive computing models for enhanced learning algorithms</p>
+              </div>
             </div>
+          </div>
 
-            <!-- Interactive controls -->
-            <div class="flex justify-center mt-12 gap-4">
-                <button class="px-6 py-2 rounded-full bg-primary-500/20 text-primary-200 hover:bg-primary-500/30 transition-colors duration-300">
-                    Reset
-                </button>
-                <button class="px-6 py-2 rounded-full bg-accent-500/20 text-accent-200 hover:bg-accent-500/30 transition-colors duration-300">
-                    Analyze
-                </button>
-                <button class="px-6 py-2 rounded-full bg-secondary-500/20 text-secondary-200 hover:bg-secondary-500/30 transition-colors duration-300">
-                    Export
-                </button>
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <div class="flex items-center mb-6">
+              <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-wave-square text-accent-600 text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-heading font-semibold text-gray-900">Signal Processing Innovation</h3>
             </div>
+            <div class="space-y-4">
+              <div class="flex items-start space-x-3">
+                <i class="fas fa-filter text-accent-500 mt-1"></i>
+                <p class="text-gray-700">Novel approaches to noise reduction using neural principles</p>
+              </div>
+              <div class="flex items-start space-x-3">
+                <i class="fas fa-stream text-accent-500 mt-1"></i>
+                <p class="text-gray-700">Bio-inspired signal processing algorithms</p>
+              </div>
+            </div>
+          </div>
         </div>
-    </section>
+
+        <!-- Right Column -->
+        <div class="space-y-8">
+          <!-- Publications List -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-2xl font-heading font-semibold text-gray-900 mb-6">Research Impact</h3>
+            <div class="space-y-6">
+              <!-- Research Metrics -->
+              <div class="grid grid-cols-2 gap-4">
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                  <div class="text-3xl font-bold text-primary-600 mb-2">
+                    <i class="fas fa-book-open text-xl mb-2"></i>
+                    <span class="ml-2">12+</span>
+                  </div>
+                  <p class="text-gray-600">Publications</p>
+                </div>
+                <div class="text-center p-4 bg-gray-50 rounded-lg">
+                  <div class="text-3xl font-bold text-accent-600 mb-2">
+                    <i class="fas fa-quote-right text-xl mb-2"></i>
+                    <span class="ml-2">150+</span>
+                  </div>
+                  <p class="text-gray-600">Citations</p>
+                </div>
+              </div>
+
+              <!-- Research Timeline -->
+              <div class="relative">
+                <div class="absolute inset-0 flex items-center">
+                  <div class="w-full border-t border-gray-200"></div>
+                </div>
+                <div class="relative flex justify-between">
+                  <div class="bg-white px-3">
+                    <span class="text-sm text-gray-500">2020</span>
+                  </div>
+                  <div class="bg-white px-3">
+                    <span class="text-sm text-gray-500">Present</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current Research -->
+          <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl shadow-lg p-8">
+            <h3 class="text-2xl font-heading font-semibold text-gray-900 mb-4">Current Focus</h3>
+            <ul class="space-y-4">
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-flask text-primary-500 mt-1"></i>
+                <span class="text-gray-700">Brain-inspired computing architectures</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-microchip text-accent-500 mt-1"></i>
+                <span class="text-gray-700">Cognitive signal processing systems</span>
+              </li>
+              <li class="flex items-start space-x-3">
+                <i class="fas fa-leaf text-secondary-500 mt-1"></i>
+                <span class="text-gray-700">Sustainable AI implementations</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="text-center">
+        <a href="#contact" class="inline-flex items-center space-x-2 px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-colors">
+          <span>Discuss Research Opportunities</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
 </div>
 </htmlCode><htmlCode>
-<div id="root" class="w-full min-h-screen bg-black">
-    <section id="multimedia_gallery" class="relative w-full min-h-screen overflow-hidden py-24">
-        <!-- Background elements -->
-        <div class="absolute inset-0 bg-gradient-to-br from-accent-900/90 via-secondary-900/80 to-primary-900/90"></div>
-        
-        <!-- Main content -->
-        <div class="relative z-10 container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-white text-center font-heading mb-16 animate-float">
-                Creative Expression
-            </h2>
+<div id="root">
+  <section id="publications" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Publications & Academic Contributions</h2>
+        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+      </div>
 
-            <!-- Featured Film -->
-            <div class="max-w-4xl mx-auto mb-24">
-                <div class="backdrop-blur-lg bg-white/5 rounded-2xl p-8">
-                    <h3 class="text-2xl font-bold text-white mb-6">Perception: A Visual Journey</h3>
-                    
-                    <!-- 360° Interactive Sphere -->
-                    <div class="relative aspect-video rounded-xl bg-black/30 overflow-hidden group">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <!-- Interactive sphere visualization -->
-                            <div class="relative w-48 h-48">
-                                <div class="absolute inset-0 border-2 border-primary-400/30 rounded-full animate-spin-slow"></div>
-                                <div class="absolute inset-0 border-2 border-accent-400/30 rounded-full animate-spin-slow animate-pulse" style="animation-direction: reverse;"></div>
-                                <div class="absolute inset-0 border-2 border-secondary-400/30 rounded-full animate-spin-slow" style="animation-delay: -2s;"></div>
-                            </div>
-                            <!-- Play button -->
-                            <button class="absolute transform hover:scale-110 transition-transform duration-300">
-                                <i class="fas fa-play text-4xl text-white/70 hover:text-white/90"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+      <!-- Publication Cards -->
+      <div class="space-y-8">
+        <!-- Featured Publication -->
+        <div class="bg-gradient-to-r from-primary-50 to-accent-50 rounded-xl shadow-lg p-8">
+          <div class="flex flex-col md:flex-row gap-8">
+            <div class="flex-1 space-y-4">
+              <span class="text-accent-600 font-semibold">Featured Publication</span>
+              <h3 class="text-2xl font-heading font-semibold text-gray-900">Neural-Inspired Algorithms for Advanced Signal Processing</h3>
+              <p class="text-gray-700">Innovative approach combining neuroscience principles with modern signal processing techniques.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">Machine Learning</span>
+                <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm">Neuroscience</span>
+                <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm">Signal Processing</span>
+              </div>
             </div>
-
-            <!-- Interactive Articles -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-                <!-- Article 1 -->
-                <div class="group backdrop-blur-lg bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-all duration-500">
-                    <div class="relative h-48 mb-4 rounded-xl bg-black/30 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-primary-500/20 to-accent-500/20 group-hover:scale-110 transition-transform duration-500"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-wave-square text-4xl text-white/50 group-hover:text-white/70 transition-colors duration-300"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Noise, Filters, and Brain Efficiency</h3>
-                    <p class="text-white/70 mb-4">Exploring the fascinating parallels between neural processing and digital signal filtering.</p>
-                    <div class="h-0.5 w-full bg-gradient-to-r from-primary-400 to-accent-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
-
-                <!-- Article 2 -->
-                <div class="group backdrop-blur-lg bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-all duration-500">
-                    <div class="relative h-48 mb-4 rounded-xl bg-black/30 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-accent-500/20 to-secondary-500/20 group-hover:scale-110 transition-transform duration-500"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-brain text-4xl text-white/50 group-hover:text-white/70 transition-colors duration-300"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">The Future of Neural Interfaces</h3>
-                    <p class="text-white/70 mb-4">Bridging the gap between biological neural networks and artificial intelligence.</p>
-                    <div class="h-0.5 w-full bg-gradient-to-r from-accent-400 to-secondary-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
-
-                <!-- Article 3 -->
-                <div class="group backdrop-blur-lg bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-all duration-500">
-                    <div class="relative h-48 mb-4 rounded-xl bg-black/30 overflow-hidden">
-                        <div class="absolute inset-0 bg-gradient-to-br from-secondary-500/20 to-primary-500/20 group-hover:scale-110 transition-transform duration-500"></div>
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <i class="fas fa-seedling text-4xl text-white/50 group-hover:text-white/70 transition-colors duration-300"></i>
-                        </div>
-                    </div>
-                    <h3 class="text-xl font-bold text-white mb-2">Sustainable AI Development</h3>
-                    <p class="text-white/70 mb-4">Creating environmentally conscious artificial intelligence solutions.</p>
-                    <div class="h-0.5 w-full bg-gradient-to-r from-secondary-400 to-primary-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
+            <div class="flex flex-col justify-center items-center space-y-4 md:w-64">
+              <div class="text-4xl font-bold text-primary-600">85+</div>
+              <p class="text-gray-600">Citations</p>
+              <a href="#" class="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors w-full text-center">
+                Read Paper
+              </a>
             </div>
+          </div>
         </div>
-    </section>
+
+        <!-- Recent Publications Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Publication 1 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <h4 class="text-xl font-heading font-semibold text-gray-900">Cognitive Computing Models in ML</h4>
+                <span class="text-sm text-gray-500">2023</span>
+              </div>
+              <p class="text-gray-600">Exploring the integration of cognitive psychology principles in machine learning architectures.</p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                  <i class="fas fa-quote-right text-accent-500"></i>
+                  <span class="text-gray-600">32 citations</span>
+                </div>
+                <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold">View Details →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Publication 2 -->
+          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
+            <div class="space-y-4">
+              <div class="flex justify-between items-start">
+                <h4 class="text-xl font-heading font-semibold text-gray-900">Sustainable AI Implementations</h4>
+                <span class="text-sm text-gray-500">2023</span>
+              </div>
+              <p class="text-gray-600">Research on environmentally conscious approaches to AI system development.</p>
+              <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                  <i class="fas fa-quote-right text-accent-500"></i>
+                  <span class="text-gray-600">28 citations</span>
+                </div>
+                <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold">View Details →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Publication Metrics -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="text-3xl font-bold text-primary-600 mb-2">12+</div>
+            <p class="text-gray-600">Publications</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="text-3xl font-bold text-accent-600 mb-2">150+</div>
+            <p class="text-gray-600">Total Citations</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="text-3xl font-bold text-secondary-600 mb-2">4</div>
+            <p class="text-gray-600">Research Areas</p>
+          </div>
+          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
+            <div class="text-3xl font-bold text-primary-600 mb-2">8+</div>
+            <p class="text-gray-600">Collaborations</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 </div>
 </htmlCode><htmlCode>
-<div id="root" class="w-full min-h-screen bg-black">
-    <section id="publications" class="relative w-full min-h-screen overflow-hidden py-24">
-        <!-- Background elements -->
-        <div class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-accent-900/80 to-secondary-900/90"></div>
-        
-        <!-- Main content -->
-        <div class="relative z-10 container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-white text-center font-heading mb-16 animate-float">
-                Research Publications
-            </h2>
+<div id="root">
+  <section id="achievements" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Awards & Recognition</h2>
+        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+      </div>
 
-            <!-- Publications Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-7xl mx-auto mb-16">
-                <!-- Featured Publication -->
-                <div class="lg:col-span-2 group backdrop-blur-lg bg-white/5 rounded-2xl p-8 hover:bg-white/10 transition-all duration-500">
-                    <div class="flex flex-col md:flex-row gap-8">
-                        <div class="flex-1">
-                            <span class="text-accent-400 text-sm font-medium mb-2 block">Featured Research</span>
-                            <h3 class="text-2xl font-bold text-white mb-4">Neural Network Optimization Through Biomimetic Approaches</h3>
-                            <p class="text-white/70 mb-6">A comprehensive study on improving artificial neural networks by mimicking biological neural systems.</p>
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="px-3 py-1 rounded-full bg-primary-500/20 text-primary-200 text-sm">Deep Learning</span>
-                                <span class="px-3 py-1 rounded-full bg-accent-500/20 text-accent-200 text-sm">Neuroscience</span>
-                                <span class="px-3 py-1 rounded-full bg-secondary-500/20 text-secondary-200 text-sm">Optimization</span>
-                            </div>
-                            <div class="flex gap-4">
-                                <button class="px-6 py-2 rounded-full bg-accent-500/20 text-accent-200 hover:bg-accent-500/30 transition-colors duration-300">Read Paper</button>
-                                <button class="px-6 py-2 rounded-full bg-white/10 text-white/70 hover:bg-white/20 transition-colors duration-300">Cite</button>
-                            </div>
-                        </div>
-                        <div class="w-full md:w-80 aspect-square rounded-xl bg-black/30 overflow-hidden relative">
-                            <div class="absolute inset-0 flex items-center justify-center">
-                                <div class="relative w-32 h-32">
-                                    <div class="absolute inset-0 border-2 border-accent-400/30 rounded-full animate-spin-slow"></div>
-                                    <div class="absolute inset-0 border-2 border-primary-400/30 rounded-full animate-spin-slow" style="animation-direction: reverse;"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Regular Publications -->
-                <div class="group backdrop-blur-lg bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-all duration-500">
-                    <span class="text-primary-400 text-sm font-medium mb-2 block">2023</span>
-                    <h3 class="text-xl font-bold text-white mb-3">Machine Learning in Climate Prediction</h3>
-                    <p class="text-white/70 mb-4">Novel approaches to environmental data analysis using advanced ML techniques.</p>
-                    <div class="h-0.5 w-full bg-gradient-to-r from-primary-400 to-accent-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
-
-                <div class="group backdrop-blur-lg bg-white/5 rounded-2xl p-6 hover:bg-white/10 transition-all duration-500">
-                    <span class="text-primary-400 text-sm font-medium mb-2 block">2023</span>
-                    <h3 class="text-xl font-bold text-white mb-3">Ethical Frameworks in AI Development</h3>
-                    <p class="text-white/70 mb-4">Developing sustainable and responsible AI implementation strategies.</p>
-                    <div class="h-0.5 w-full bg-gradient-to-r from-accent-400 to-secondary-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
-                </div>
-            </div>
-
-            <!-- Citation Metrics -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-                <div class="backdrop-blur-lg bg-white/5 rounded-xl p-6 text-center">
-                    <div class="text-3xl font-bold text-white mb-2">25+</div>
-                    <div class="text-white/70">Research Papers</div>
-                </div>
-                <div class="backdrop-blur-lg bg-white/5 rounded-xl p-6 text-center">
-                    <div class="text-3xl font-bold text-white mb-2">1000+</div>
-                    <div class="text-white/70">Citations</div>
-                </div>
-                <div class="backdrop-blur-lg bg-white/5 rounded-xl p-6 text-center">
-                    <div class="text-3xl font-bold text-white mb-2">15+</div>
-                    <div class="text-white/70">Research Projects</div>
-                </div>
-            </div>
+      <!-- Featured Achievement -->
+      <div class="bg-gradient-to-br from-accent-50 to-primary-50 rounded-xl shadow-lg p-8 mb-12">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="w-24 h-24 bg-accent-100 rounded-full flex items-center justify-center">
+            <i class="fas fa-trophy text-4xl text-accent-600"></i>
+          </div>
+          <div class="flex-1 text-center md:text-left">
+            <span class="text-accent-600 font-semibold">Outstanding Research Award</span>
+            <h3 class="text-2xl font-heading font-bold text-gray-900 mt-2">Innovation in Neuroscience & AI Integration</h3>
+            <p class="text-gray-600 mt-2">Recognition for groundbreaking research in combining neuroscience principles with artificial intelligence.</p>
+          </div>
         </div>
-    </section>
+      </div>
+
+      <!-- Achievement Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <!-- Research Impact -->
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-chart-line text-2xl text-primary-600"></i>
+            </div>
+            <div class="text-4xl font-bold text-primary-600">150+</div>
+            <p class="text-gray-600 mt-2">Research Citations</p>
+          </div>
+        </div>
+
+        <!-- Publications -->
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-book-open text-2xl text-accent-600"></i>
+            </div>
+            <div class="text-4xl font-bold text-accent-600">12+</div>
+            <p class="text-gray-600 mt-2">Published Papers</p>
+          </div>
+        </div>
+
+        <!-- Projects -->
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all">
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mb-4">
+              <i class="fas fa-project-diagram text-2xl text-secondary-600"></i>
+            </div>
+            <div class="text-4xl font-bold text-secondary-600">20+</div>
+            <p class="text-gray-600 mt-2">Completed Projects</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recognition Timeline -->
+      <div class="space-y-8">
+        <h3 class="text-2xl font-heading font-semibold text-gray-900 text-center mb-8">Achievement Timeline</h3>
+        
+        <div class="relative">
+          <!-- Timeline Line -->
+          <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gray-200"></div>
+          
+          <!-- Timeline Items -->
+          <div class="space-y-12">
+            <!-- Item 1 -->
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="flex-1 md:text-right md:pr-8">
+                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <h4 class="font-semibold text-lg text-gray-900">Best Research Paper Award</h4>
+                  <p class="text-gray-600">International Conference on AI & Neuroscience</p>
+                </div>
+              </div>
+              <div class="w-8 h-8 bg-accent-500 rounded-full my-4 md:my-0 z-10"></div>
+              <div class="flex-1 md:pl-8">
+                <span class="text-gray-500">2023</span>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="flex-1 md:text-right md:pr-8">
+                <span class="text-gray-500">2022</span>
+              </div>
+              <div class="w-8 h-8 bg-primary-500 rounded-full my-4 md:my-0 z-10"></div>
+              <div class="flex-1 md:pl-8">
+                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <h4 class="font-semibold text-lg text-gray-900">Innovation Excellence Award</h4>
+                  <p class="text-gray-600">Signal Processing Innovation Competition</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="text-center mt-16">
+        <a href="#contact" class="inline-flex items-center space-x-2 px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-colors">
+          <span>Let's Collaborate</span>
+          <i class="fas fa-arrow-right"></i>
+        </a>
+      </div>
+    </div>
+  </section>
 </div>
 </htmlCode><htmlCode>
-<div id="root" class="w-full min-h-screen bg-black">
-    <section id="contact_neural" class="relative w-full min-h-screen overflow-hidden py-24">
-        <!-- Background elements -->
-        <div class="absolute inset-0 bg-gradient-to-br from-secondary-900/90 via-primary-900/80 to-accent-900/90"></div>
-        
-        <!-- Neural network overlay -->
-        <div class="absolute inset-0 opacity-20">
-            <div class="hidden md:block absolute w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-1/4"></div>
-            <div class="hidden md:block absolute w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-2/4"></div>
-            <div class="hidden md:block absolute w-px h-full bg-gradient-to-b from-transparent via-white/20 to-transparent left-3/4"></div>
-        </div>
+<div id="root">
+  <section id="contact" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Let's Connect</h2>
+        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Interested in collaborating on interdisciplinary projects combining neuroscience, AI, and design? Let's discuss how we can innovate together.</p>
+      </div>
 
-        <!-- Main content -->
-        <div class="relative z-10 container mx-auto px-4">
-            <h2 class="text-4xl md:text-5xl font-bold text-white text-center font-heading mb-16 animate-float">
-                Neural Connection
-            </h2>
-
-            <!-- Contact form and info container -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
-                <!-- Contact Form -->
-                <div class="backdrop-blur-lg bg-white/5 rounded-2xl p-8">
-                    <form class="space-y-6">
-                        <div class="space-y-2">
-                            <label class="block text-white text-sm font-medium" for="name">Name</label>
-                            <input type="text" id="name" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-accent-400 transition-colors duration-300" placeholder="Enter your name">
-                        </div>
-
-                        <div class="space-y-2">
-                            <label class="block text-white text-sm font-medium" for="email">Email</label>
-                            <input type="email" id="email" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-accent-400 transition-colors duration-300" placeholder="Enter your email">
-                        </div>
-
-                        <div class="space-y-2">
-                            <label class="block text-white text-sm font-medium" for="subject">Subject</label>
-                            <select id="subject" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white focus:border-accent-400 transition-colors duration-300">
-                                <option value="" class="bg-gray-900">Select a topic</option>
-                                <option value="research" class="bg-gray-900">Research Collaboration</option>
-                                <option value="project" class="bg-gray-900">Project Inquiry</option>
-                                <option value="speaking" class="bg-gray-900">Speaking Engagement</option>
-                            </select>
-                        </div>
-
-                        <div class="space-y-2">
-                            <label class="block text-white text-sm font-medium" for="message">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/50 focus:border-accent-400 transition-colors duration-300" placeholder="Your message here..."></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full py-3 px-6 rounded-xl bg-accent-500/20 text-accent-200 hover:bg-accent-500/30 transition-colors duration-300 group">
-                            <span class="flex items-center justify-center">
-                                Send Message
-                                <i class="fas fa-arrow-right ml-2 transform group-hover:translate-x-1 transition-transform duration-300"></i>
-                            </span>
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Contact Info -->
-                <div class="space-y-8">
-                    <!-- Contact Info Cards -->
-                    <div class="backdrop-blur-lg bg-white/5 rounded-2xl p-6 group hover:bg-white/10 transition-all duration-500">
-                        <div class="flex items-center space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-primary-500/20 flex items-center justify-center">
-                                <i class="fas fa-envelope text-primary-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-white font-bold">Email</h3>
-                                <p class="text-white/70">contact@synapticsymphonies.com</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="backdrop-blur-lg bg-white/5 rounded-2xl p-6 group hover:bg-white/10 transition-all duration-500">
-                        <div class="flex items-center space-x-4">
-                            <div class="flex-shrink-0 w-12 h-12 rounded-full bg-accent-500/20 flex items-center justify-center">
-                                <i class="fas fa-map-marker-alt text-accent-300"></i>
-                            </div>
-                            <div>
-                                <h3 class="text-white font-bold">Location</h3>
-                                <p class="text-white/70">Innovation Hub, Digital Valley</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Social Links -->
-                    <div class="backdrop-blur-lg bg-white/5 rounded-2xl p-6">
-                        <h3 class="text-white font-bold mb-4">Connect</h3>
-                        <div class="flex space-x-4">
-                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors duration-300">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- Contact Form -->
+        <div class="bg-white rounded-xl shadow-lg p-8">
+          <form class="space-y-6">
+            <div class="space-y-4">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500">
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500">
+              </div>
+              <div>
+                <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
+                <input type="text" id="subject" name="subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500">
+              </div>
+              <div>
+                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500"></textarea>
+              </div>
             </div>
+            <button type="submit" class="w-full px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-colors">
+              Send Message
+            </button>
+          </form>
         </div>
-    </section>
+
+        <!-- Contact Info -->
+        <div class="space-y-8">
+          <!-- Quick Connect -->
+          <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-8 shadow-lg">
+            <h3 class="text-xl font-heading font-semibold text-gray-900 mb-6">Quick Connect</h3>
+            <div class="space-y-4">
+              <a href="mailto:contact@example.com" class="flex items-center space-x-3 text-gray-700 hover:text-accent-600 transition-colors">
+                <i class="fas fa-envelope w-6 text-accent-500"></i>
+                <span>contact@example.com</span>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-gray-700 hover:text-accent-600 transition-colors">
+                <i class="fab fa-linkedin w-6 text-accent-500"></i>
+                <span>LinkedIn Profile</span>
+              </a>
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-gray-700 hover:text-accent-600 transition-colors">
+                <i class="fab fa-github w-6 text-accent-500"></i>
+                <span>GitHub Profile</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Research Interests -->
+          <div class="bg-white rounded-xl shadow-lg p-8">
+            <h3 class="text-xl font-heading font-semibold text-gray-900 mb-6">Research Interests</h3>
+            <div class="flex flex-wrap gap-3">
+              <span class="px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm">Neural Networks</span>
+              <span class="px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm">Signal Processing</span>
+              <span class="px-4 py-2 bg-secondary-100 text-secondary-700 rounded-full text-sm">AI Ethics</span>
+              <span class="px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm">Cognitive Computing</span>
+              <span class="px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm">Sustainable AI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</htmlCode><htmlCode>
+<div id="root">
+  <footer id="footer" class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+        <!-- About Column -->
+        <div class="col-span-1 md:col-span-2">
+          <h3 class="text-2xl font-heading font-bold mb-4">Shyam Rao Sindhia</h3>
+          <p class="text-gray-400 mb-6">Exploring the intersection of neuroscience, artificial intelligence, and design to create innovative solutions for tomorrow's challenges.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-accent-400 transition-colors">
+              <i class="fab fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-accent-400 transition-colors">
+              <i class="fab fa-github text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-accent-400 transition-colors">
+              <i class="fab fa-twitter text-xl"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-accent-400 transition-colors">
+              <i class="fab fa-researchgate text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li><a href="#about" class="text-gray-400 hover:text-accent-300 transition-colors">About</a></li>
+            <li><a href="#expertise" class="text-gray-400 hover:text-accent-300 transition-colors">Expertise</a></li>
+            <li><a href="#projects" class="text-gray-400 hover:text-accent-300 transition-colors">Projects</a></li>
+            <li><a href="#research" class="text-gray-400 hover:text-accent-300 transition-colors">Research</a></li>
+            <li><a href="#publications" class="text-gray-400 hover:text-accent-300 transition-colors">Publications</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-lg font-semibold mb-4">Contact</h4>
+          <ul class="space-y-2">
+            <li class="flex items-center space-x-2">
+              <i class="fas fa-envelope text-accent-400"></i>
+              <a href="mailto:contact@example.com" class="text-gray-400 hover:text-accent-300 transition-colors">contact@example.com</a>
+            </li>
+            <li class="flex items-center space-x-2">
+              <i class="fas fa-map-marker-alt text-accent-400"></i>
+              <span class="text-gray-400">Research Lab, Innovation Hub</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="border-t border-gray-800 pt-8 mt-8">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <!-- Copyright -->
+          <div class="text-gray-500 text-sm">
+            © 2024 Shyam Rao Sindhia. All rights reserved.
+          </div>
+          
+          <!-- Additional Links -->
+          <div class="flex space-x-6 text-sm">
+            <a href="#" class="text-gray-500 hover:text-accent-300 transition-colors">Privacy Policy</a>
+            <a href="#" class="text-gray-500 hover:text-accent-300 transition-colors">Terms of Use</a>
+            <a href="#" class="text-gray-500 hover:text-accent-300 transition-colors">Sitemap</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll to Top Button -->
+      <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-accent-500 hover:bg-accent-600 text-white p-3 rounded-full shadow-lg transition-colors">
+        <i class="fas fa-arrow-up"></i>
+      </button>
+    </div>
+  </footer>
 </div>
 </htmlCode>
