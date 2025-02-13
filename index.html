@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
    <head>
@@ -60,6 +58,22 @@
                   900: '#581c87',
                   950: '#3b0764',
                 },
+                dark: {
+                  base: '#131313',
+                  surface: '#292929',
+                  hover: '#363636',
+                  card: '#1e1e1e',  // New intermediate shade for cards
+                },
+                accent: {
+                  primary: '#C72D53',
+                  light: '#d4516e',
+                  dark: '#a42544',
+                },
+                light: {
+                  primary: '#F2F2F1',
+                  secondary: '#E0E0DF',
+                  tertiary: '#CECECE',
+                }
               },
               fontFamily: {
                 sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
@@ -208,6 +222,27 @@
             content: " (" attr(href) ")";
           }
         }
+
+        /* Update base styles */
+        body {
+          @apply bg-dark-base text-light-primary;
+          text-rendering: optimizeLegibility;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Update scrollbar for dark theme */
+        ::-webkit-scrollbar-track {
+          @apply bg-dark-surface;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+          @apply bg-accent-primary;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+          @apply bg-accent-light;
+        }
       </style>
 
       <!-- Enhanced Image Handler -->
@@ -350,90 +385,322 @@
    </body>
 </html><htmlCode>
 <div id="root">
-  <section id="navbar_hero" class="relative min-h-screen bg-gradient-to-br from-primary-900 via-primary-800 to-accent-900 text-white">
-    <!-- Navigation -->
-    <nav class="fixed w-full bg-transparent backdrop-blur-sm z-50 transition-all duration-300" x-data="{ isScrolled: false, isOpen: false }" 
-         @scroll.window="isScrolled = (window.pageYOffset > 20)">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-16">
-          <!-- Logo/Name -->
-          <div class="flex-shrink-0">
-            <a href="#" class="text-xl font-heading font-bold">Shyam Rao Sindhia</a>
-          </div>
+  <section id="navbar_hero" class="relative min-h-screen bg-dark-base text-light-primary overflow-hidden">
+  <!-- Enhanced Navigation -->
+  <nav class="fixed w-full bg-dark-surface/95 backdrop-blur-md z-50 border-b border-dark-hover" 
+       x-data="{ isScrolled: false, isOpen: false }" 
+       @scroll.window="isScrolled = (window.pageYOffset > 20)"
+       :class="{ 'shadow-lg': isScrolled }">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <!-- Logo/Brand -->
+        <div class="flex-shrink-0 flex items-center">
+          <a href="#" class="group flex items-center space-x-2">
+            <div class="w-10 h-10 bg-accent-primary/10 rounded-lg flex items-center justify-center group-hover:bg-accent-primary/20 transition-colors">
+              <span class="text-2xl font-bold text-accent-primary">S</span>
+            </div>
+            <span class="text-xl font-heading font-bold tracking-tight text-light-primary group-hover:text-accent-primary transition-colors">
+              Shyam Rao Sindhia
+            </span>
+          </a>
+        </div>
 
-          <!-- Desktop Navigation -->
-          <div class="hidden md:flex space-x-8">
-            <a href="#about" class="hover:text-accent-300 transition-colors">About</a>
-            <a href="#expertise" class="hover:text-accent-300 transition-colors">Expertise</a>
-            <a href="#projects" class="hover:text-accent-300 transition-colors">Projects</a>
-            <a href="#research" class="hover:text-accent-300 transition-colors">Research</a>
-            <a href="#contact" class="hover:text-accent-300 transition-colors">Contact</a>
-          </div>
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-1">
+          <a href="#about" class="px-4 py-2 rounded-lg text-light-primary hover:bg-dark-hover hover:text-accent-primary transition-all">About</a>
+          <a href="#expertise" class="px-4 py-2 rounded-lg text-light-primary hover:bg-dark-hover hover:text-accent-primary transition-all">Expertise</a>
+          <a href="#projects" class="px-4 py-2 rounded-lg text-light-primary hover:bg-dark-hover hover:text-accent-primary transition-all">Projects</a>
+          <a href="#research" class="px-4 py-2 rounded-lg text-light-primary hover:bg-dark-hover hover:text-accent-primary transition-all">Research</a>
+          <a href="#contact" class="ml-2 px-4 py-2 bg-accent-primary hover:bg-accent-light text-light-primary rounded-lg transition-colors">Contact</a>
+        </div>
 
-          <!-- Mobile menu button -->
-          <div class="md:hidden">
-            <button @click="isOpen = !isOpen" class="p-2 rounded-md hover:bg-primary-700 focus:outline-none">
-              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-              </svg>
-            </button>
-          </div>
+        <!-- Mobile menu button -->
+        <div class="md:hidden">
+          <button @click="isOpen = !isOpen" 
+                  class="p-2 rounded-lg text-light-primary hover:bg-dark-hover focus:outline-none"
+                  aria-label="Toggle menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path x-show="!isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+              <path x-show="isOpen" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
         </div>
       </div>
-
-      <!-- Mobile Navigation -->
-      <div class="md:hidden" x-show="isOpen" @click.away="isOpen = false" x-transition>
-        <div class="px-2 pt-2 pb-3 space-y-1 bg-primary-800">
-          <a href="#about" class="block px-3 py-2 hover:bg-primary-700 rounded-md">About</a>
-          <a href="#expertise" class="block px-3 py-2 hover:bg-primary-700 rounded-md">Expertise</a>
-          <a href="#projects" class="block px-3 py-2 hover:bg-primary-700 rounded-md">Projects</a>
-          <a href="#research" class="block px-3 py-2 hover:bg-primary-700 rounded-md">Research</a>
-          <a href="#contact" class="block px-3 py-2 hover:bg-primary-700 rounded-md">Contact</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-br from-primary-900/90 via-primary-800/90 to-accent-900/90"></div>
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1)_0%,rgba(0,0,0,0.1)_100%)]"></div>
     </div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
-      <div class="text-center space-y-8">
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight animate-fade-in">
-          Where Design Meets<br/>
-          <span class="bg-gradient-to-r from-accent-400 to-secondary-400 text-transparent bg-clip-text">
-            Neuroscience, AI, and Creativity
+    <!-- Enhanced Mobile Navigation -->
+    <div x-show="isOpen" 
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 -translate-y-4"
+         x-transition:enter-end="opacity-100 translate-y-0"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100 translate-y-0"
+         x-transition:leave-end="opacity-0 -translate-y-4"
+         class="md:hidden absolute inset-x-0 top-full bg-dark-surface border-b border-dark-hover">
+      <div class="px-4 py-3 space-y-1">
+        <a href="#about" class="block px-4 py-2 rounded-lg text-light-primary hover:bg-dark-hover hover:text-accent-primary transition-all">About</a>
+        <a href="#expertise" class="block px-4 py-2 rounded-lg text-light-primary hover:bg-dark-hover hover:text-accent-primary transition-all">Expertise</a>
+        <a href="#projects" class="block px-4 py-2 rounded-lg text-light-primary hover:bg-dark-hover hover:text-accent-primary transition-all">Projects</a>
+        <a href="#research" class="block px-4 py-2 rounded-lg text-light-primary hover:bg-dark-hover hover:text-accent-primary transition-all">Research</a>
+        <a href="#contact" class="block px-4 py-2 bg-accent-primary hover:bg-accent-light text-light-primary rounded-lg transition-colors mt-2">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Content -->
+  <div class="relative z-10 min-h-screen pt-20 overflow-hidden">
+  <!-- Background Elements -->
+  <div class="absolute inset-0 z-0">
+    <!-- ...existing background code... -->
+  </div>
+
+  <!-- Main Content -->
+  <div class="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="relative grid grid-cols-12 gap-6 items-center">
+      <!-- Left Side: Small Cards -->
+      <div class="col-span-12 lg:col-span-3 space-y-6">
+        <div class="group spotlight-card relative backdrop-blur-md bg-dark-surface/50 rounded-2xl p-6
+                    border border-dark-hover/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+          <div class="relative z-10">
+            <div class="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center mb-4
+                        transform-gpu transition-transform duration-300 group-hover:scale-110">
+              <i class="fas fa-brain text-accent-primary text-xl"></i>
+            </div>
+            <h3 class="text-lg font-heading font-semibold text-light-primary mb-2">AI & Machine Learning</h3>
+            <p class="text-sm text-light-secondary">Neuroscience-Inspired AI, Transformer Models, NLP</p>
+          </div>
+        </div>
+
+        <div class="group spotlight-card relative backdrop-blur-md bg-dark-surface/50 rounded-2xl p-6
+                    border border-dark-hover/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+          <div class="relative z-10">
+            <div class="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center mb-4
+                        transform-gpu transition-transform duration-300 group-hover:scale-110">
+              <i class="fas fa-dna text-accent-primary text-xl"></i>
+            </div>
+            <h3 class="text-lg font-heading font-semibold text-light-primary mb-2">Neuroscience & Cognition</h3>
+            <p class="text-sm text-light-secondary">Brain-inspired computation, DSP & Cognition</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Center: Main Content -->
+      <div class="col-span-12 lg:col-span-6 text-center lg:px-8">
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-bold leading-tight mb-6">
+          Bridging<br/>
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-accent-primary to-accent-light animate-gradient">
+            AI, Neuroscience, & Quantum Innovation
           </span>
         </h1>
-        
-        <p class="max-w-2xl mx-auto text-lg sm:text-xl text-gray-300 animate-slide-up">
-          Exploring interdisciplinary solutions at the intersection of neuroscience, artificial intelligence, and design to drive impactful innovation in technology.
+        <p class="text-lg sm:text-xl text-light-secondary leading-relaxed max-w-2xl mx-auto mb-8">
+          Exploring the convergence of artificial intelligence, neuroscience, and quantum computing to unlock new frontiers in cognitive architecture.
         </p>
-
-        <div class="flex justify-center space-x-4 animate-slide-up">
-          <a href="#contact" class="px-6 py-3 bg-accent-500 hover:bg-accent-600 rounded-lg font-semibold transition-colors">
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href="#contact" class="px-8 py-3 bg-accent-primary hover:bg-accent-light rounded-lg font-semibold transition-all transform hover:-translate-y-1">
             Get in Touch
           </a>
-          <a href="#expertise" class="px-6 py-3 border-2 border-white hover:bg-white/10 rounded-lg font-semibold transition-colors">
+          <a href="#expertise" class="px-8 py-3 border-2 border-accent-primary text-accent-primary hover:bg-accent-primary/10 rounded-lg font-semibold transition-all transform hover:-translate-y-1">
             Explore My Work
           </a>
         </div>
       </div>
-    </div>
 
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-      </svg>
+      <!-- Right Side: Small Cards -->
+      <div class="col-span-12 lg:col-span-3 space-y-6">
+        <div class="group spotlight-card relative backdrop-blur-md bg-dark-surface/50 rounded-2xl p-6
+                    border border-dark-hover/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+          <div class="relative z-10">
+            <div class="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center mb-4
+                        transform-gpu transition-transform duration-300 group-hover:scale-110">
+              <i class="fas fa-atom text-accent-primary text-xl"></i>
+            </div>
+            <h3 class="text-lg font-heading font-semibold text-light-primary mb-2">Quantum & Mathematics</h3>
+            <p class="text-sm text-light-secondary">Quantum Neuroscience, Fourier Analysis Networks</p>
+          </div>
+        </div>
+
+        <div class="group spotlight-card relative backdrop-blur-md bg-dark-surface/50 rounded-2xl p-6
+                    border border-dark-hover/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+          <div class="relative z-10">
+            <div class="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center mb-4
+                        transform-gpu transition-transform duration-300 group-hover:scale-110">
+              <i class="fas fa-leaf text-accent-primary text-xl"></i>
+            </div>
+            <h3 class="text-lg font-heading font-semibold text-light-primary mb-2">Sustainable Innovation</h3>
+            <p class="text-sm text-light-secondary">Solar Decathlon Project, Cognitive Systems in Sustainability</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Wide Card -->
+      <div class="col-span-12 mt-6">
+        <div class="group spotlight-card relative backdrop-blur-md bg-dark-surface/50 rounded-2xl p-6
+                    border border-dark-hover/10 transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+          <div class="relative z-10 flex items-center gap-6">
+            <div class="w-12 h-12 bg-accent-primary/10 rounded-lg flex items-center justify-center
+                        transform-gpu transition-transform duration-300 group-hover:scale-110">
+              <i class="fas fa-palette text-accent-primary text-xl"></i>
+            </div>
+            <div class="flex-1">
+              <h3 class="text-lg font-heading font-semibold text-light-primary mb-2">Design & HCI</h3>
+              <p class="text-sm text-light-secondary">UI/UX, Adaptive Interfaces, Algorithmic Affordances</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+
+  <!-- Scroll Indicator -->
+  <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+    <div class="w-6 h-10 border-2 border-light-primary rounded-full flex items-start justify-center p-2">
+      <div class="w-1 h-3 bg-accent-primary rounded-full animate-scroll"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Keep existing spotlight styles and scripts -->
+</section>
+
+<!-- Add this to your existing styles -->
+<style>
+@keyframes scroll {
+  0% { transform: translateY(0); opacity: 1; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-scroll {
+  animation: scroll 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 4s ease infinite;
+}
+
+.group:hover .group-hover\:scale-110 {
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .group:first-child,
+  .group:last-child {
+    grid-column: span 2;
+  }
+}
+
+.spotlight-card {
+  cursor: pointer;
+  background: linear-gradient(
+    to bottom right,
+    rgba(41, 41, 41, 0.8),
+    rgba(30, 30, 30, 0.8)
+  );
+  backdrop-filter: blur(10px);
+}
+
+.spotlight {
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+    rgba(199, 45, 83, 0.1),
+    transparent 40%
+  );
+}
+
+@media (max-width: 768px) {
+  .spotlight {
+    display: none;
+  }
+}
+
+.spotlight-follow {
+  background: radial-gradient(
+    circle at center,
+    rgba(199, 45, 83, 0.15) 0%,
+    transparent 50%
+  );
+  width: 400px;
+  height: 400px;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s;
+}
+
+.spotlight-card {
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(199, 45, 83, 0.1) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .spotlight-follow {
+    display: none;
+  }
+}
+</style>
+
+<!-- Add this script -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const cards = document.querySelectorAll('.spotlight-card');
+  const spotlight = document.querySelector('.spotlight-follow');
+  const container = document.querySelector('.relative.grid');
+
+  const updateSpotlight = (e) => {
+    if (!container.contains(e.target)) {
+      spotlight.style.opacity = '0';
+      return;
+    }
+
+    const containerRect = container.getBoundingClientRect();
+    const x = e.clientX - containerRect.left;
+    const y = e.clientY - containerRect.top;
+    
+    spotlight.style.opacity = '1';
+    spotlight.style.left = `${x}px`;
+    spotlight.style.top = `${y}px`;
+  };
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      
+      card.style.setProperty('--x', `${x}%`);
+      card.style.setProperty('--y', `${y}%`);
+    });
+  });
+
+  document.addEventListener('mousemove', updateSpotlight);
+});
+</script>
 </div>
 </htmlCode><htmlCode>
 <div id="root">
-  <section id="about" class="py-20 bg-white">
+  <section id="about" class="py-20 bg-dark-base">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <!-- Image/Visual Side -->
@@ -454,40 +721,40 @@
         <!-- Content Side -->
         <div class="space-y-8">
           <div class="space-y-4">
-            <h2 class="text-3xl font-heading font-bold text-gray-900">Career Vision</h2>
-            <div class="w-20 h-1 bg-accent-500"></div>
-            <p class="text-lg text-gray-700 leading-relaxed">
+            <h2 class="text-3xl font-heading font-bold text-light-primary">Career Vision</h2>
+            <div class="w-20 h-1 bg-accent-primary"></div>
+            <p class="text-lg text-light-secondary leading-relaxed">
               Exploring interdisciplinary solutions at the nexus of neuroscience, artificial intelligence, and design. I aim to leverage my expertise in machine learning, human behavior, and creative problem-solving to drive impactful innovation in technology and design.
             </p>
           </div>
 
           <!-- Key Focus Areas -->
           <div class="space-y-6">
-            <h3 class="text-xl font-heading font-semibold text-gray-800">Key Focus Areas</h3>
+            <h3 class="text-xl font-heading font-semibold text-light-primary">Key Focus Areas</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <!-- Focus Area Cards -->
-              <div class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+              <div class="p-4 rounded-lg bg-dark-surface hover:bg-dark-hover transition-colors">
                 <div class="flex items-center space-x-3">
-                  <i class="fas fa-brain text-accent-500 text-xl"></i>
-                  <h4 class="font-semibold">Neuroscience Integration</h4>
+                  <i class="fas fa-brain text-accent-primary text-xl"></i>
+                  <h4 class="font-semibold text-light-primary">Neuroscience Integration</h4>
                 </div>
               </div>
-              <div class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+              <div class="p-4 rounded-lg bg-dark-surface hover:bg-dark-hover transition-colors">
                 <div class="flex items-center space-x-3">
                   <i class="fas fa-microchip text-primary-500 text-xl"></i>
-                  <h4 class="font-semibold">AI & Machine Learning</h4>
+                  <h4 class="font-semibold text-light-primary">AI & Machine Learning</h4>
                 </div>
               </div>
-              <div class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+              <div class="p-4 rounded-lg bg-dark-surface hover:bg-dark-hover transition-colors">
                 <div class="flex items-center space-x-3">
                   <i class="fas fa-lightbulb text-secondary-500 text-xl"></i>
-                  <h4 class="font-semibold">Creative Design</h4>
+                  <h4 class="font-semibold text-light-primary">Creative Design</h4>
                 </div>
               </div>
-              <div class="p-4 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+              <div class="p-4 rounded-lg bg-dark-surface hover:bg-dark-hover transition-colors">
                 <div class="flex items-center space-x-3">
                   <i class="fas fa-leaf text-green-500 text-xl"></i>
-                  <h4 class="font-semibold">Sustainable Innovation</h4>
+                  <h4 class="font-semibold text-light-primary">Sustainable Innovation</h4>
                 </div>
               </div>
             </div>
@@ -495,7 +762,7 @@
 
           <!-- Call to Action -->
           <div class="pt-6">
-            <a href="#expertise" class="inline-flex items-center space-x-2 text-accent-600 hover:text-accent-700 font-semibold">
+            <a href="#expertise" class="inline-flex items-center space-x-2 text-accent-primary hover:text-accent-light font-semibold">
               <span>Explore My Expertise</span>
               <i class="fas fa-arrow-right"></i>
             </a>
@@ -507,24 +774,24 @@
 </div>
 </htmlCode><htmlCode>
 <div id="root">
-  <section id="expertise" class="py-20 bg-gray-50">
+  <section id="expertise" class="py-20 bg-dark-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Areas of Expertise</h2>
-        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+        <h2 class="text-3xl font-heading font-bold text-light-primary mb-4">Areas of Expertise</h2>
+        <div class="w-20 h-1 bg-accent-primary mx-auto mb-6"></div>
       </div>
 
       <!-- Expertise Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- AI/ML and Data Science -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-6 transition-all">
           <div class="p-6 space-y-4">
-            <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center">
+            <div class="w-12 h-12 bg-dark-surface rounded-lg flex items-center justify-center">
               <i class="fas fa-robot text-2xl text-primary-600"></i>
             </div>
-            <h3 class="text-xl font-heading font-semibold text-gray-900">AI/ML & Data Science</h3>
-            <ul class="space-y-2 text-gray-600">
+            <h3 class="text-xl font-heading font-semibold text-light-primary">AI/ML & Data Science</h3>
+            <ul class="space-y-2 text-light-secondary">
               <li class="flex items-start space-x-2">
                 <i class="fas fa-check-circle text-primary-500 mt-1"></i>
                 <span>Clustering & Dimensionality Reduction</span>
@@ -546,13 +813,13 @@
         </div>
 
         <!-- Neuroscience and Cognitive Psychology -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-6 transition-all">
           <div class="p-6 space-y-4">
-            <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center">
+            <div class="w-12 h-12 bg-dark-surface rounded-lg flex items-center justify-center">
               <i class="fas fa-brain text-2xl text-accent-600"></i>
             </div>
-            <h3 class="text-xl font-heading font-semibold text-gray-900">Neuroscience & Cognition</h3>
-            <ul class="space-y-2 text-gray-600">
+            <h3 class="text-xl font-heading font-semibold text-light-primary">Neuroscience & Cognition</h3>
+            <ul class="space-y-2 text-light-secondary">
               <li class="flex items-start space-x-2">
                 <i class="fas fa-check-circle text-accent-500 mt-1"></i>
                 <span>Brain-Based ML Analogies</span>
@@ -574,13 +841,13 @@
         </div>
 
         <!-- Design and Innovation -->
-        <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-6 transition-all">
           <div class="p-6 space-y-4">
-            <div class="w-12 h-12 bg-secondary-100 rounded-lg flex items-center justify-center">
+            <div class="w-12 h-12 bg-dark-surface rounded-lg flex items-center justify-center">
               <i class="fas fa-lightbulb text-2xl text-secondary-600"></i>
             </div>
-            <h3 class="text-xl font-heading font-semibold text-gray-900">Design & Innovation</h3>
-            <ul class="space-y-2 text-gray-600">
+            <h3 class="text-xl font-heading font-semibold text-light-primary">Design & Innovation</h3>
+            <ul class="space-y-2 text-light-secondary">
               <li class="flex items-start space-x-2">
                 <i class="fas fa-check-circle text-secondary-500 mt-1"></i>
                 <span>Neuroscience-Based Design</span>
@@ -605,30 +872,30 @@
       <!-- Additional Skills -->
       <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- DSP -->
-        <div class="bg-white p-6 rounded-xl shadow-lg">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">Digital Signal Processing</h3>
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-6 transition-all">
+          <h3 class="text-xl font-heading font-semibold text-light-primary mb-4">Digital Signal Processing</h3>
           <div class="space-y-3">
             <div class="flex items-center">
               <div class="w-full bg-gray-200 rounded-full h-2">
                 <div class="bg-primary-500 h-2 rounded-full" style="width: 90%"></div>
               </div>
-              <span class="ml-4 text-sm text-gray-600">90%</span>
+              <span class="ml-4 text-sm text-light-secondary">90%</span>
             </div>
-            <p class="text-gray-600">Exploring connections between DSP techniques and brain efficiency in filtering sensory noise.</p>
+            <p class="text-light-secondary">Exploring connections between DSP techniques and brain efficiency in filtering sensory noise.</p>
           </div>
         </div>
 
         <!-- Sustainability -->
-        <div class="bg-white p-6 rounded-xl shadow-lg">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">Sustainable Technologies</h3>
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-6 transition-all">
+          <h3 class="text-xl font-heading font-semibold text-light-primary mb-4">Sustainable Technologies</h3>
           <div class="space-y-3">
             <div class="flex items-center">
               <div class="w-full bg-gray-200 rounded-full h-2">
                 <div class="bg-secondary-500 h-2 rounded-full" style="width: 85%"></div>
               </div>
-              <span class="ml-4 text-sm text-gray-600">85%</span>
+              <span class="ml-4 text-sm text-light-secondary">85%</span>
             </div>
-            <p class="text-gray-600">Crafting innovative, scalable solutions for environmentally conscious technology applications.</p>
+            <p class="text-light-secondary">Crafting innovative, scalable solutions for environmentally conscious technology applications.</p>
           </div>
         </div>
       </div>
@@ -637,327 +904,436 @@
 </div>
 </htmlCode><htmlCode>
 <div id="root">
-  <section id="projects" class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Featured Projects</h2>
-        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
-      </div>
+  <section id="projects" class="py-20 bg-dark-base">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-heading font-bold text-light-primary mb-4">Featured Projects</h2>
+      <div class="w-20 h-1 bg-accent-primary mx-auto mb-6"></div>
+    </div>
 
-      <!-- Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Project 1: AI-Powered Personality Prediction -->
-        <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-          <div class="aspect-w-16 aspect-h-9 bg-gray-100">
-            <img src="https://placehold.co/600x400/primary/white?text=AI+Personality+Prediction" alt="AI Personality Prediction Project" class="object-cover w-full h-full">
-          </div>
-          <div class="p-6 space-y-4">
-            <h3 class="text-xl font-heading font-semibold text-gray-900">Personality Prediction System</h3>
-            <p class="text-gray-600">Machine learning model for predicting personality traits using behavioral data analysis.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">Machine Learning</span>
-              <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm">Psychology</span>
-            </div>
+    <!-- Featured Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <!-- Recall River -->
+      <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-primary-100 to-primary-200">
+          <div class="p-8 flex items-center justify-center">
+            <i class="fas fa-water text-5xl text-primary-600"></i>
           </div>
         </div>
-
-        <!-- Project 2: Audio Classification -->
-        <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-          <div class="aspect-w-16 aspect-h-9 bg-gray-100">
-            <img src="https://placehold.co/600x400/accent/white?text=Audio+Classification" alt="Audio Classification Project" class="object-cover w-full h-full">
-          </div>
-          <div class="p-6 space-y-4">
-            <h3 class="text-xl font-heading font-semibold text-gray-900">Neural Audio Classifier</h3>
-            <p class="text-gray-600">Deep learning system for audio pattern recognition and classification.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm">Deep Learning</span>
-              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">DSP</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 3: Flood Prediction -->
-        <div class="group relative bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-          <div class="aspect-w-16 aspect-h-9 bg-gray-100">
-            <img src="https://placehold.co/600x400/secondary/white?text=Flood+Prediction" alt="Flood Prediction Project" class="object-cover w-full h-full">
-          </div>
-          <div class="p-6 space-y-4">
-            <h3 class="text-xl font-heading font-semibold text-gray-900">Flood Prediction AI</h3>
-            <p class="text-gray-600">Predictive modeling for flood risk assessment using environmental data.</p>
-            <div class="flex flex-wrap gap-2">
-              <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm">Data Science</span>
-              <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">Sustainability</span>
-            </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary">Recall River</h3>
+          <p class="text-light-secondary">A React-based PWA designed to enhance memory recall and thought organization, featuring dynamic graph-based thought linking and timeline navigation.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">React PWA</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">NLP</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Cognitive Design</span>
           </div>
         </div>
       </div>
 
-      <!-- Research Highlights -->
-      <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Research Project 1 -->
-        <div class="bg-gradient-to-br from-primary-50 to-accent-50 p-6 rounded-xl shadow-lg">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">
-            <i class="fas fa-brain text-primary-500 mr-2"></i>
-            Neuroscience-AI Integration
-          </h3>
-          <p class="text-gray-700 mb-4">Exploring brain-inspired algorithms for enhanced machine learning performance.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-sm text-gray-500">Ongoing Research</span>
-            <button class="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors">
-              Learn More
-            </button>
+      <!-- ADHD-Inspired Transformers -->
+      <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-accent-100 to-accent-200">
+          <div class="p-8 flex items-center justify-center">
+            <i class="fas fa-brain text-5xl text-accent-600 group-hover:scale-110 transition-transform duration-300"></i>
           </div>
         </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary">ADHD-Inspired Transformers</h3>
+          <p class="text-light-secondary">Developing attention mechanisms within AI that mimic ADHD cognitive patterns for focus-adaptive systems.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">NLP</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Cognitive AI</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Neural Architecture</span>
+          </div>
+        </div>
+      </div>
 
-        <!-- Research Project 2 -->
-        <div class="bg-gradient-to-br from-secondary-50 to-accent-50 p-6 rounded-xl shadow-lg">
-          <h3 class="text-xl font-heading font-semibold text-gray-900 mb-4">
-            <i class="fas fa-wave-square text-secondary-500 mr-2"></i>
-            Signal Processing Innovation
-          </h3>
-          <p class="text-gray-700 mb-4">Developing novel DSP techniques inspired by neural information processing.</p>
-          <div class="flex justify-between items-center">
-            <span class="text-sm text-gray-500">Active Development</span>
-            <button class="px-4 py-2 bg-secondary-500 text-white rounded-lg hover:bg-secondary-600 transition-colors">
-              Learn More
-            </button>
+      <!-- Solar Decathlon -->
+      <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-secondary-100 to-secondary-200">
+          <div class="p-8 flex items-center justify-center">
+            <i class="fas fa-solar-panel text-5xl text-secondary-600 group-hover:scale-110 transition-transform duration-300"></i>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary">Solar Decathlon 2024-25</h3>
+          <p class="text-light-secondary">Applying AI & neuroscience to eco-conscious design with biofeedback-driven adaptive architecture.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Sustainability</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Biofeedback</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Smart Architecture</span>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</div>
-</htmlCode><htmlCode>
-<div id="root">
-  <section id="research" class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <!-- Section Header -->
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Research & Publications</h2>
-        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
-      </div>
 
-      <!-- Research Areas -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
-        <!-- Left Column -->
-        <div class="space-y-8">
-          <div class="bg-white rounded-xl shadow-lg p-8">
-            <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
-                <i class="fas fa-brain text-primary-600 text-2xl"></i>
-              </div>
-              <h3 class="text-2xl font-heading font-semibold text-gray-900">Neuroscience & AI Integration</h3>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-microscope text-primary-500 mt-1"></i>
-                <p class="text-gray-700">Investigating neural network architectures inspired by brain structure</p>
-              </div>
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-chart-network text-primary-500 mt-1"></i>
-                <p class="text-gray-700">Developing cognitive computing models for enhanced learning algorithms</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-white rounded-xl shadow-lg p-8">
-            <div class="flex items-center mb-6">
-              <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mr-4">
-                <i class="fas fa-wave-square text-accent-600 text-2xl"></i>
-              </div>
-              <h3 class="text-2xl font-heading font-semibold text-gray-900">Signal Processing Innovation</h3>
-            </div>
-            <div class="space-y-4">
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-filter text-accent-500 mt-1"></i>
-                <p class="text-gray-700">Novel approaches to noise reduction using neural principles</p>
-              </div>
-              <div class="flex items-start space-x-3">
-                <i class="fas fa-stream text-accent-500 mt-1"></i>
-                <p class="text-gray-700">Bio-inspired signal processing algorithms</p>
-              </div>
-            </div>
+    <!-- Research Projects -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <!-- ADHD-Inspired Transformers -->
+      <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-dark-surface/50 to-dark-hover/50">
+          <div class="p-8 flex items-center justify-center">
+            <i class="fas fa-brain text-5xl text-accent-primary group-hover:scale-110 transition-transform duration-300"></i>
           </div>
         </div>
-
-        <!-- Right Column -->
-        <div class="space-y-8">
-          <!-- Publications List -->
-          <div class="bg-white rounded-xl shadow-lg p-8">
-            <h3 class="text-2xl font-heading font-semibold text-gray-900 mb-6">Research Impact</h3>
-            <div class="space-y-6">
-              <!-- Research Metrics -->
-              <div class="grid grid-cols-2 gap-4">
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <div class="text-3xl font-bold text-primary-600 mb-2">
-                    <i class="fas fa-book-open text-xl mb-2"></i>
-                    <span class="ml-2">12+</span>
-                  </div>
-                  <p class="text-gray-600">Publications</p>
-                </div>
-                <div class="text-center p-4 bg-gray-50 rounded-lg">
-                  <div class="text-3xl font-bold text-accent-600 mb-2">
-                    <i class="fas fa-quote-right text-xl mb-2"></i>
-                    <span class="ml-2">150+</span>
-                  </div>
-                  <p class="text-gray-600">Citations</p>
-                </div>
-              </div>
-
-              <!-- Research Timeline -->
-              <div class="relative">
-                <div class="absolute inset-0 flex items-center">
-                  <div class="w-full border-t border-gray-200"></div>
-                </div>
-                <div class="relative flex justify-between">
-                  <div class="bg-white px-3">
-                    <span class="text-sm text-gray-500">2020</span>
-                  </div>
-                  <div class="bg-white px-3">
-                    <span class="text-sm text-gray-500">Present</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Current Research -->
-          <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl shadow-lg p-8">
-            <h3 class="text-2xl font-heading font-semibold text-gray-900 mb-4">Current Focus</h3>
-            <ul class="space-y-4">
-              <li class="flex items-start space-x-3">
-                <i class="fas fa-flask text-primary-500 mt-1"></i>
-                <span class="text-gray-700">Brain-inspired computing architectures</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <i class="fas fa-microchip text-accent-500 mt-1"></i>
-                <span class="text-gray-700">Cognitive signal processing systems</span>
-              </li>
-              <li class="flex items-start space-x-3">
-                <i class="fas fa-leaf text-secondary-500 mt-1"></i>
-                <span class="text-gray-700">Sustainable AI implementations</span>
-              </li>
-            </ul>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary">ADHD-Inspired Transformers</h3>
+          <p class="text-light-secondary">Developing attention mechanisms within AI that mimic ADHD cognitive patterns for focus-adaptive systems.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">NLP</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Cognitive AI</span>
           </div>
         </div>
       </div>
 
-      <!-- Call to Action -->
-      <div class="text-center">
-        <a href="#contact" class="inline-flex items-center space-x-2 px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-colors">
-          <span>Discuss Research Opportunities</span>
-          <i class="fas fa-arrow-right"></i>
-        </a>
+      <!-- Solar Decathlon -->
+      <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-dark-surface/50 to-dark-hover/50">
+          <div class="p-8 flex items-center justify-center">
+            <i class="fas fa-solar-panel text-5xl text-accent-primary group-hover:scale-110 transition-transform duration-300"></i>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary">Solar Decathlon 2024-25</h3>
+          <p class="text-light-secondary">Applying AI & neuroscience to eco-conscious design with biofeedback-driven adaptive architecture.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Sustainability</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Biofeedback</span>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+
+    <!-- Additional Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Thought Rating Scale -->
+      <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-purple-100 to-primary-200">
+          <div class="p-8 flex items-center justify-center">
+            <i class="fas fa-chart-radar text-5xl text-purple-600 group-hover:scale-110 transition-transform duration-300"></i>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary">Thought Rating Scale</h3>
+          <p class="text-light-secondary">Algorithmic evaluation of thoughts using metrics for originality, impact, and coherence.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">AI Analytics</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Cognitive Computing</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Personality Prediction -->
+      <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-pink-100 to-accent-200">
+          <div class="p-8 flex items-center justify-center">
+            <i class="fas fa-user-cog text-5xl text-pink-600 group-hover:scale-110 transition-transform duration-300"></i>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary">Personality Prediction</h3>
+          <p class="text-light-secondary">ML model analyzing behavioral patterns for personality insights and adaptive interventions.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Machine Learning</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Behavioral Analysis</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Neural Audio -->
+      <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-cyan-100 to-blue-200">
+          <div class="p-8 flex items-center justify-center">
+            <i class="fas fa-wave-square text-5xl text-cyan-600 group-hover:scale-110 transition-transform duration-300"></i>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary">Neural Audio Classifier</h3>
+          <p class="text-light-secondary">Deep learning system for audio pattern recognition and cognitive response analysis.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Deep Learning</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Audio Processing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 </div>
 </htmlCode><htmlCode>
 <div id="root">
-  <section id="publications" class="py-20 bg-white">
+  <section id="research" class="py-20 bg-dark-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Publications & Academic Contributions</h2>
-        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+        <h2 class="text-3xl font-heading font-bold text-light-primary mb-4">Research & Publications</h2>
+        <div class="w-20 h-1 bg-accent-primary mx-auto mb-6"></div>
+        <p class="text-lg text-light-secondary max-w-3xl mx-auto">Exploring the convergence of mathematics, neuroscience, and artificial intelligence through innovative research and practical applications.</p>
       </div>
 
-      <!-- Publication Cards -->
-      <div class="space-y-8">
-        <!-- Featured Publication -->
-        <div class="bg-gradient-to-r from-primary-50 to-accent-50 rounded-xl shadow-lg p-8">
-          <div class="flex flex-col md:flex-row gap-8">
-            <div class="flex-1 space-y-4">
-              <span class="text-accent-600 font-semibold">Featured Publication</span>
-              <h3 class="text-2xl font-heading font-semibold text-gray-900">Neural-Inspired Algorithms for Advanced Signal Processing</h3>
-              <p class="text-gray-700">Innovative approach combining neuroscience principles with modern signal processing techniques.</p>
-              <div class="flex flex-wrap gap-2">
-                <span class="px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm">Machine Learning</span>
-                <span class="px-3 py-1 bg-accent-100 text-accent-700 rounded-full text-sm">Neuroscience</span>
-                <span class="px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm">Signal Processing</span>
-              </div>
+      <!-- Featured Research Projects -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        <!-- Mathematics of Neuroscience -->
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-8 transition-all group">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-dark-surface rounded-lg flex items-center justify-center mr-4">
+              <i class="fas fa-square-root-alt text-primary-600 text-2xl"></i>
             </div>
-            <div class="flex flex-col justify-center items-center space-y-4 md:w-64">
-              <div class="text-4xl font-bold text-primary-600">85+</div>
-              <p class="text-gray-600">Citations</p>
-              <a href="#" class="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors w-full text-center">
-                Read Paper
-              </a>
-            </div>
+            <h3 class="text-2xl font-heading font-semibold text-light-primary">The Mathematics of Neuroscience</h3>
+          </div>
+          <p class="text-light-secondary mb-4">Bridging mathematical foundations and neural systems through Greek symbolism and Fourier analysis, exploring the periodic nature of brain wave dynamics.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Greek Symbols</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Fourier Analysis</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Neural Dynamics</span>
           </div>
         </div>
 
-        <!-- Recent Publications Grid -->
+        <!-- DSP & Neural Efficiency -->
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-8 transition-all group">
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-dark-surface rounded-lg flex items-center justify-center mr-4">
+              <i class="fas fa-wave-square text-accent-600 text-2xl"></i>
+            </div>
+            <h3 class="text-2xl font-heading font-semibold text-light-primary">DSP & Neural Efficiency</h3>
+          </div>
+          <p class="text-light-secondary mb-4">Understanding cognitive noise filtering through ML-based noise reduction techniques, with applications in neuromorphic computing architectures.</p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">DSP</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Neuromorphic</span>
+            <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Cognitive Filtering</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Research Applications -->
+      <div class="space-y-8 mb-16">
+        <h3 class="text-2xl font-heading font-semibold text-light-primary text-center mb-8">Research Applications</h3>
+        
+        <!-- Application Cards -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Publication 1 -->
-          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <h4 class="text-xl font-heading font-semibold text-gray-900">Cognitive Computing Models in ML</h4>
-                <span class="text-sm text-gray-500">2023</span>
+          <!-- Algorithmic Design -->
+          <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+            <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-dark-surface/50 to-dark-hover/50">
+              <div class="p-8 flex items-center justify-center">
+                <i class="fas fa-laptop-code text-5xl text-accent-primary group-hover:scale-110 transition-transform duration-300"></i>
               </div>
-              <p class="text-gray-600">Exploring the integration of cognitive psychology principles in machine learning architectures.</p>
-              <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                  <i class="fas fa-quote-right text-accent-500"></i>
-                  <span class="text-gray-600">32 citations</span>
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold">View Details →</a>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-xl font-heading font-semibold text-light-primary">Algorithmic Design for HCI</h3>
+              <p class="text-light-secondary">Advanced interface design incorporating pressure-sensitive controls and AI-adaptive elements.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Adaptive UI</span>
+                <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Ergonomic UX</span>
               </div>
             </div>
           </div>
 
-          <!-- Publication 2 -->
-          <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow">
-            <div class="space-y-4">
-              <div class="flex justify-between items-start">
-                <h4 class="text-xl font-heading font-semibold text-gray-900">Sustainable AI Implementations</h4>
-                <span class="text-sm text-gray-500">2023</span>
+          <!-- AI's Next Frontier -->
+          <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+            <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-dark-surface/50 to-dark-hover/50">
+              <div class="p-8 flex items-center justify-center">
+                <i class="fas fa-brain text-5xl text-accent-primary group-hover:scale-110 transition-transform duration-300"></i>
               </div>
-              <p class="text-gray-600">Research on environmentally conscious approaches to AI system development.</p>
-              <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                  <i class="fas fa-quote-right text-accent-500"></i>
-                  <span class="text-gray-600">28 citations</span>
-                </div>
-                <a href="#" class="text-primary-600 hover:text-primary-700 font-semibold">View Details →</a>
+            </div>
+            <div class="p-6 space-y-4">
+              <h3 class="text-xl font-heading font-semibold text-light-primary">AI's Next Frontier: Brain-Inspired Computing</h3>
+              <p class="text-light-secondary">Investigating parallels between transformer models and neural plasticity in cognitive processing.</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Neuroplasticity</span>
+                <span class="px-3 py-1 bg-dark-surface text-light-primary border border-accent-primary/20 rounded-full text-sm">Transformers</span>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Publication Metrics -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mt-12">
-          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-            <div class="text-3xl font-bold text-primary-600 mb-2">12+</div>
-            <p class="text-gray-600">Publications</p>
+      <!-- Key Research Metrics -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover p-6 rounded-xl shadow-lg text-center transition-all">
+          <div class="w-12 h-12 bg-dark-surface rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-scroll text-primary-600"></i>
           </div>
-          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-            <div class="text-3xl font-bold text-accent-600 mb-2">150+</div>
-            <p class="text-gray-600">Total Citations</p>
+          <div class="text-3xl font-bold text-light-primary">4</div>
+          <p class="text-light-secondary">Major Publications</p>
+        </div>
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover p-6 rounded-xl shadow-lg text-center transition-all">
+          <div class="w-12 h-12 bg-dark-surface rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-link text-accent-600"></i>
           </div>
-          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-            <div class="text-3xl font-bold text-secondary-600 mb-2">4</div>
-            <p class="text-gray-600">Research Areas</p>
+          <div class="text-3xl font-bold text-light-primary">200+</div>
+          <p class="text-light-secondary">Citations</p>
+        </div>
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover p-6 rounded-xl shadow-lg text-center transition-all">
+          <div class="w-12 h-12 bg-dark-surface rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-users text-secondary-600"></i>
           </div>
-          <div class="bg-white p-6 rounded-xl shadow-lg text-center">
-            <div class="text-3xl font-bold text-primary-600 mb-2">8+</div>
-            <p class="text-gray-600">Collaborations</p>
+          <div class="text-3xl font-bold text-light-primary">12+</div>
+          <p class="text-light-secondary">Collaborators</p>
+        </div>
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover p-6 rounded-xl shadow-lg text-center transition-all">
+          <div class="w-12 h-12 bg-dark-surface rounded-full flex items-center justify-center mx-auto mb-4">
+            <i class="fas fa-chart-line text-primary-600"></i>
+          </div>
+          <div class="text-3xl font-bold text-light-primary">3</div>
+          <p class="text-light-secondary">Active Projects</p>
+        </div>
+      </div>
+  </div>
+</section>
+</div>
+</htmlCode><htmlCode>
+<div id="root">
+  <section id="publications" class="py-20 bg-dark-base">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-heading font-bold text-light-primary mb-4">Publications & Articles</h2>
+      <div class="w-20 h-1 bg-accent-primary mx-auto mb-6"></div>
+      <p class="text-lg text-light-secondary max-w-3xl mx-auto">Exploring the intersections of neuroscience, AI, and human cognition through research and thought leadership.</p>
+    </div>
+
+    <!-- Latest Articles Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      <!-- Article 1 -->
+      <a href="https://www.linkedin.com/pulse/mapping-social-dynamics-adhd-quantum-inspired-approach-shyam-sindhia-k85wc" 
+         target="_blank" rel="noopener noreferrer" 
+         class="group bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-accent-100 to-accent-200">
+          <div class="p-6 flex items-center justify-center">
+            <i class="fas fa-network-wired text-4xl text-accent-600"></i>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary group-hover:text-accent-600 transition-colors">Mapping Social Dynamics: ADHD-Quantum-Inspired Approach</h3>
+          <p class="text-light-secondary line-clamp-2">Understanding hidden dynamics of social networks through quantum-inspired analysis.</p>
+          <div class="flex items-center text-sm text-light-tertiary">
+            <i class="fas fa-clock mr-2"></i>
+            <span>4 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Article 2 -->
+      <a href="https://www.linkedin.com/pulse/how-your-brain-cheats-memory-science-recognizing-stuff-shyam-sindhia-7pv5c"
+         target="_blank" rel="noopener noreferrer"
+         class="group bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-primary-100 to-primary-200">
+          <div class="p-6 flex items-center justify-center">
+            <i class="fas fa-brain text-4xl text-primary-600"></i>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary group-hover:text-primary-600 transition-colors">Neural Encoding & Memory</h3>
+          <p class="text-light-secondary line-clamp-2">How your brain manages pattern recognition and memory formation.</p>
+          <div class="flex items-center text-sm text-light-tertiary">
+            <i class="fas fa-clock mr-2"></i>
+            <span>3 min read</span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Article 3 -->
+      <a href="https://www.linkedin.com/pulse/pls-proxemics-neuroscience-future-project-management-shyam-sindhia-b9ayc"
+         target="_blank" rel="noopener noreferrer"
+         class="group bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all">
+        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-br from-secondary-100 to-secondary-200">
+          <div class="p-6 flex items-center justify-center">
+            <i class="fas fa-project-diagram text-4xl text-secondary-600"></i>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <h3 class="text-xl font-heading font-semibold text-light-primary group-hover:text-secondary-600 transition-colors">PLS, Proxemics, & Project Management</h3>
+          <p class="text-light-secondary line-clamp-2">Reimagining project management through neuroscience and spatial analytics.</p>
+          <div class="flex items-center text-sm text-light-tertiary">
+            <i class="fas fa-clock mr-2"></i>
+            <span>4 min read</span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Featured Publications -->
+    <div class="space-y-8">
+      <h3 class="text-2xl font-heading font-semibold text-light-primary text-center mb-8">Featured Research Articles</h3>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Brain as ML Model -->
+        <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-8 shadow-lg group hover:shadow-xl transition-all">
+          <a href="https://www.linkedin.com/pulse/brain-machine-learning-model-balancing-bias-variance-shyam-sindhia-83jtc"
+             target="_blank" rel="noopener noreferrer">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-microchip text-primary-600 text-xl"></i>
+              </div>
+              <h4 class="text-xl font-heading font-semibold text-light-primary">The Brain as a Machine Learning Model</h4>
+            </div>
+            <p class="text-light-secondary mb-4">Exploring the parallels between neural processing and ML model optimization.</p>
+            <div class="flex items-center text-sm text-light-tertiary">
+              <i class="fas fa-clock mr-2"></i>
+              <span>5 min read</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- K-Folds -->
+        <div class="bg-gradient-to-br from-accent-50 to-secondary-50 rounded-xl p-8 shadow-lg group hover:shadow-xl transition-all">
+          <a href="https://www.linkedin.com/pulse/k-folds-grey-matter-neuroscience-behind-our-built-in-data-sindhia-s9mcc"
+             target="_blank" rel="noopener noreferrer">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-12 bg-accent-100 rounded-lg flex items-center justify-center mr-4">
+                <i class="fas fa-dna text-accent-600 text-xl"></i>
+              </div>
+              <h4 class="text-xl font-heading font-semibold text-light-primary">K-Folds and Grey Matter</h4>
+            </div>
+            <p class="text-light-secondary mb-4">Understanding our brain's built-in cross-validation mechanisms.</p>
+            <div class="flex items-center text-sm text-light-tertiary">
+              <i class="fas fa-clock mr-2"></i>
+              <span>3 min read</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Additional Articles -->
+      <div class="mt-8">
+        <div class="bg-dark-surface rounded-xl shadow-lg overflow-hidden">
+          <div class="p-6">
+            <h4 class="text-xl font-heading font-semibold text-light-primary mb-6">More Insights</h4>
+            <div class="space-y-6">
+              <!-- Gini Index Article -->
+              <a href="https://www.linkedin.com/pulse/exploring-parallels-between-gini-index-machine-learning-shyam-sindhia-4mbfc"
+                 target="_blank" rel="noopener noreferrer"
+                 class="flex items-start space-x-4 group">
+                <div class="w-8 h-8 bg-secondary-100 rounded flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-chart-pie text-secondary-600"></i>
+                </div>
+                <div>
+                  <h5 class="font-semibold text-light-primary group-hover:text-secondary-600 transition-colors">Gini Index in ML & Brain Processing</h5>
+                  <p class="text-sm text-light-tertiary">4 min read</p>
+                </div>
+              </a>
+              <!-- Add more articles as needed -->
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+
+    <!-- ...rest of existing metrics and stats... -->
+  </div>
+</section>
 </div>
 </htmlCode><htmlCode>
 <div id="root">
-  <section id="achievements" class="py-20 bg-gray-50">
+  <section id="achievements" class="py-20 bg-dark-surface">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Awards & Recognition</h2>
-        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
+        <h2 class="text-3xl font-heading font-bold text-light-primary mb-4">Awards & Recognition</h2>
+        <div class="w-20 h-1 bg-accent-primary mx-auto mb-6"></div>
       </div>
 
       <!-- Featured Achievement -->
@@ -968,8 +1344,8 @@
           </div>
           <div class="flex-1 text-center md:text-left">
             <span class="text-accent-600 font-semibold">Outstanding Research Award</span>
-            <h3 class="text-2xl font-heading font-bold text-gray-900 mt-2">Innovation in Neuroscience & AI Integration</h3>
-            <p class="text-gray-600 mt-2">Recognition for groundbreaking research in combining neuroscience principles with artificial intelligence.</p>
+            <h3 class="text-2xl font-heading font-bold text-light-primary mt-2">Innovation in Neuroscience & AI Integration</h3>
+            <p class="text-light-secondary mt-2">Recognition for groundbreaking research in combining neuroscience principles with artificial intelligence.</p>
           </div>
         </div>
       </div>
@@ -977,42 +1353,42 @@
       <!-- Achievement Grid -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
         <!-- Research Impact -->
-        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all">
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-6 transition-all">
           <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 bg-primary-100 rounded-full flex items-center justify-center mb-4">
+            <div class="w-16 h-16 bg-dark-surface rounded-full flex items-center justify-center mb-4">
               <i class="fas fa-chart-line text-2xl text-primary-600"></i>
             </div>
-            <div class="text-4xl font-bold text-primary-600">150+</div>
-            <p class="text-gray-600 mt-2">Research Citations</p>
+            <div class="text-4xl font-bold text-light-primary">150+</div>
+            <p class="text-light-secondary mt-2">Research Citations</p>
           </div>
         </div>
 
         <!-- Publications -->
-        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all">
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-6 transition-all">
           <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 bg-accent-100 rounded-full flex items-center justify-center mb-4">
+            <div class="w-16 h-16 bg-dark-surface rounded-full flex items-center justify-center mb-4">
               <i class="fas fa-book-open text-2xl text-accent-600"></i>
             </div>
-            <div class="text-4xl font-bold text-accent-600">12+</div>
-            <p class="text-gray-600 mt-2">Published Papers</p>
+            <div class="text-4xl font-bold text-light-primary">12+</div>
+            <p class="text-light-secondary mt-2">Published Papers</p>
           </div>
         </div>
 
         <!-- Projects -->
-        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-all">
+        <div class="bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg p-6 transition-all">
           <div class="flex flex-col items-center text-center">
-            <div class="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mb-4">
+            <div class="w-16 h-16 bg-dark-surface rounded-full flex items-center justify-center mb-4">
               <i class="fas fa-project-diagram text-2xl text-secondary-600"></i>
             </div>
-            <div class="text-4xl font-bold text-secondary-600">20+</div>
-            <p class="text-gray-600 mt-2">Completed Projects</p>
+            <div class="text-4xl font-bold text-light-primary">20+</</div>
+            <p class="text-light-secondary mt-2">Completed Projects</p>
           </div>
         </div>
       </div>
 
       <!-- Recognition Timeline -->
       <div class="space-y-8">
-        <h3 class="text-2xl font-heading font-semibold text-gray-900 text-center mb-8">Achievement Timeline</h3>
+        <h3 class="text-2xl font-heading font-semibold text-light-primary text-center mb-8">Achievement Timeline</h3>
         
         <div class="relative">
           <!-- Timeline Line -->
@@ -1023,27 +1399,27 @@
             <!-- Item 1 -->
             <div class="flex flex-col md:flex-row items-center">
               <div class="flex-1 md:text-right md:pr-8">
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                  <h4 class="font-semibold text-lg text-gray-900">Best Research Paper Award</h4>
-                  <p class="text-gray-600">International Conference on AI & Neuroscience</p>
+                <div class="bg-dark-surface p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <h4 class="font-semibold text-lg text-light-primary">Best Research Paper Award</h4>
+                  <p class="text-light-secondary">International Conference on AI & Neuroscience</p>
                 </div>
               </div>
               <div class="w-8 h-8 bg-accent-500 rounded-full my-4 md:my-0 z-10"></div>
               <div class="flex-1 md:pl-8">
-                <span class="text-gray-500">2023</span>
+                <span class="text-light-secondary">2023</span>
               </div>
             </div>
 
             <!-- Item 2 -->
             <div class="flex flex-col md:flex-row items-center">
               <div class="flex-1 md:text-right md:pr-8">
-                <span class="text-gray-500">2022</span>
+                <span class="text-light-secondary">2022</span>
               </div>
               <div class="w-8 h-8 bg-primary-500 rounded-full my-4 md:my-0 z-10"></div>
               <div class="flex-1 md:pl-8">
-                <div class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
-                  <h4 class="font-semibold text-lg text-gray-900">Innovation Excellence Award</h4>
-                  <p class="text-gray-600">Signal Processing Innovation Competition</p>
+                <div class="bg-dark-surface p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                  <h4 class="font-semibold text-lg text-light-primary">Innovation Excellence Award</h4>
+                  <p class="text-light-secondary">Signal Processing Innovation Competition</p>
                 </div>
               </div>
             </div>
@@ -1053,7 +1429,7 @@
 
       <!-- Call to Action -->
       <div class="text-center mt-16">
-        <a href="#contact" class="inline-flex items-center space-x-2 px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-colors">
+        <a href="#contact" class="inline-flex items-center space-x-2 px-6 py-3 bg-accent-primary text-light-primary rounded-lg hover:bg-accent-light transition-colors">
           <span>Let's Collaborate</span>
           <i class="fas fa-arrow-right"></i>
         </a>
@@ -1063,38 +1439,38 @@
 </div>
 </htmlCode><htmlCode>
 <div id="root">
-  <section id="contact" class="py-20 bg-white">
+  <section id="contact" class="py-20 bg-dark-base">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
       <div class="text-center mb-16">
-        <h2 class="text-3xl font-heading font-bold text-gray-900 mb-4">Let's Connect</h2>
-        <div class="w-20 h-1 bg-accent-500 mx-auto mb-6"></div>
-        <p class="text-lg text-gray-600 max-w-2xl mx-auto">Interested in collaborating on interdisciplinary projects combining neuroscience, AI, and design? Let's discuss how we can innovate together.</p>
+        <h2 class="text-3xl font-heading font-bold text-light-primary mb-4">Let's Connect</h2>
+        <div class="w-20 h-1 bg-accent-primary mx-auto mb-6"></div>
+        <p class="text-lg text-light-secondary max-w-2xl mx-auto">Interested in collaborating on interdisciplinary projects combining neuroscience, AI, and design? Let's discuss how we can innovate together.</p>
       </div>
 
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
         <!-- Contact Form -->
-        <div class="bg-white rounded-xl shadow-lg p-8">
+        <div class="bg-dark-surface rounded-xl shadow-lg p-8">
           <form class="space-y-6">
             <div class="space-y-4">
               <div>
-                <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500">
+                <label for="name" class="block text-sm font-medium text-light-secondary">Name</label>
+                <input type="text" id="name" name="name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-primary focus:ring-accent-primary">
               </div>
               <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500">
+                <label for="email" class="block text-sm font-medium text-light-secondary">Email</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-primary focus:ring-accent-primary">
               </div>
               <div>
-                <label for="subject" class="block text-sm font-medium text-gray-700">Subject</label>
-                <input type="text" id="subject" name="subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500">
+                <label for="subject" class="block text-sm font-medium text-light-secondary">Subject</label>
+                <input type="text" id="subject" name="subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-primary focus:ring-accent-primary">
               </div>
               <div>
-                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-500 focus:ring-accent-500"></textarea>
+                <label for="message" class="block text-sm font-medium text-light-secondary">Message</label>
+                <textarea id="message" name="message" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-accent-primary focus:ring-accent-primary"></textarea>
               </div>
             </div>
-            <button type="submit" class="w-full px-6 py-3 bg-accent-500 text-white rounded-lg hover:bg-accent-600 transition-colors">
+            <button type="submit" class="w-full px-6 py-3 bg-accent-primary text-light-primary rounded-lg hover:bg-accent-light transition-colors">
               Send Message
             </button>
           </form>
@@ -1103,27 +1479,29 @@
         <!-- Contact Info -->
         <div class="space-y-8">
           <!-- Quick Connect -->
-          <div class="bg-gradient-to-br from-primary-50 to-accent-50 rounded-xl p-8 shadow-lg">
-            <h3 class="text-xl font-heading font-semibold text-gray-900 mb-6">Quick Connect</h3>
-            <div class="space-y-4">
-              <a href="mailto:contact@example.com" class="flex items-center space-x-3 text-gray-700 hover:text-accent-600 transition-colors">
-                <i class="fas fa-envelope w-6 text-accent-500"></i>
-                <span>contact@example.com</span>
-              </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-gray-700 hover:text-accent-600 transition-colors">
-                <i class="fab fa-linkedin w-6 text-accent-500"></i>
-                <span>LinkedIn Profile</span>
-              </a>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-gray-700 hover:text-accent-600 transition-colors">
-                <i class="fab fa-github w-6 text-accent-500"></i>
-                <span>GitHub Profile</span>
-              </a>
+          <div class="group relative bg-dark-card hover:bg-dark-hover border border-dark-hover rounded-xl shadow-lg overflow-hidden transition-all duration-300">
+            <div class="p-8">
+              <h3 class="text-xl font-heading font-semibold text-light-primary mb-6">Quick Connect</h3>
+              <div class="space-y-4">
+                <a href="mailto:contact@example.com" class="flex items-center space-x-3 text-light-secondary hover:text-accent-primary transition-colors">
+                  <i class="fas fa-envelope w-6 text-accent-primary"></i>
+                  <span>contact@example.com</span>
+                </a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-light-secondary hover:text-accent-primary transition-colors">
+                  <i class="fab fa-linkedin w-6 text-accent-primary"></i>
+                  <span>LinkedIn Profile</span>
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-3 text-light-secondary hover:text-accent-primary transition-colors">
+                  <i class="fab fa-github w-6 text-accent-primary"></i>
+                  <span>GitHub Profile</span>
+                </a>
+              </div>
             </div>
           </div>
 
           <!-- Research Interests -->
-          <div class="bg-white rounded-xl shadow-lg p-8">
-            <h3 class="text-xl font-heading font-semibold text-gray-900 mb-6">Research Interests</h3>
+          <div class="bg-dark-surface rounded-xl shadow-lg p-8">
+            <h3 class="text-xl font-heading font-semibold text-light-primary mb-6">Research Interests</h3>
             <div class="flex flex-wrap gap-3">
               <span class="px-4 py-2 bg-primary-100 text-primary-700 rounded-full text-sm">Neural Networks</span>
               <span class="px-4 py-2 bg-accent-100 text-accent-700 rounded-full text-sm">Signal Processing</span>
@@ -1139,25 +1517,25 @@
 </div>
 </htmlCode><htmlCode>
 <div id="root">
-  <footer id="footer" class="bg-gray-900 text-white pt-16 pb-8">
+  <footer id="footer" class="bg-dark-base text-light-primary pt-16 pb-8">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Footer Content -->
       <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
         <!-- About Column -->
         <div class="col-span-1 md:col-span-2">
           <h3 class="text-2xl font-heading font-bold mb-4">Shyam Rao Sindhia</h3>
-          <p class="text-gray-400 mb-6">Exploring the intersection of neuroscience, artificial intelligence, and design to create innovative solutions for tomorrow's challenges.</p>
+          <p class="text-light-secondary mb-6">Exploring the intersection of neuroscience, artificial intelligence, and design to create innovative solutions for tomorrow's challenges.</p>
           <div class="flex space-x-4">
-            <a href="#" class="text-gray-400 hover:text-accent-400 transition-colors">
+            <a href="#" class="text-light-secondary hover:text-accent-primary transition-colors">
               <i class="fab fa-linkedin text-xl"></i>
             </a>
-            <a href="#" class="text-gray-400 hover:text-accent-400 transition-colors">
+            <a href="#" class="text-light-secondary hover:text-accent-primary transition-colors">
               <i class="fab fa-github text-xl"></i>
             </a>
-            <a href="#" class="text-gray-400 hover:text-accent-400 transition-colors">
+            <a href="#" class="text-light-secondary hover:text-accent-primary transition-colors">
               <i class="fab fa-twitter text-xl"></i>
             </a>
-            <a href="#" class="text-gray-400 hover:text-accent-400 transition-colors">
+            <a href="#" class="text-light-secondary hover:text-accent-primary transition-colors">
               <i class="fab fa-researchgate text-xl"></i>
             </a>
           </div>
@@ -1167,11 +1545,11 @@
         <div>
           <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
           <ul class="space-y-2">
-            <li><a href="#about" class="text-gray-400 hover:text-accent-300 transition-colors">About</a></li>
-            <li><a href="#expertise" class="text-gray-400 hover:text-accent-300 transition-colors">Expertise</a></li>
-            <li><a href="#projects" class="text-gray-400 hover:text-accent-300 transition-colors">Projects</a></li>
-            <li><a href="#research" class="text-gray-400 hover:text-accent-300 transition-colors">Research</a></li>
-            <li><a href="#publications" class="text-gray-400 hover:text-accent-300 transition-colors">Publications</a></li>
+            <li><a href="#about" class="text-light-secondary hover:text-accent-primary transition-colors">About</a></li>
+            <li><a href="#expertise" class="text-light-secondary hover:text-accent-primary transition-colors">Expertise</a></li>
+            <li><a href="#projects" class="text-light-secondary hover:text-accent-primary transition-colors">Projects</a></li>
+            <li><a href="#research" class="text-light-secondary hover:text-accent-primary transition-colors">Research</a></li>
+            <li><a href="#publications" class="text-light-secondary hover:text-accent-primary transition-colors">Publications</a></li>
           </ul>
         </div>
 
@@ -1180,39 +1558,40 @@
           <h4 class="text-lg font-semibold mb-4">Contact</h4>
           <ul class="space-y-2">
             <li class="flex items-center space-x-2">
-              <i class="fas fa-envelope text-accent-400"></i>
-              <a href="mailto:contact@example.com" class="text-gray-400 hover:text-accent-300 transition-colors">contact@example.com</a>
+              <i class="fas fa-envelope text-accent-primary"></i>
+              <a href="mailto:contact@example.com" class="text-light-secondary hover:text-accent-primary transition-colors">contact@example.com</a>
             </li>
             <li class="flex items-center space-x-2">
-              <i class="fas fa-map-marker-alt text-accent-400"></i>
-              <span class="text-gray-400">Research Lab, Innovation Hub</span>
+              <i class="fas fa-map-marker-alt text-accent-primary"></i>
+              <span class="text-light-secondary">Research Lab, Innovation Hub</span>
             </li>
           </ul>
         </div>
       </div>
 
       <!-- Divider -->
-      <div class="border-t border-gray-800 pt-8 mt-8">
+      <div class="border-t border-dark-hover pt-8 mt-8">
         <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <!-- Copyright -->
-          <div class="text-gray-500 text-sm">
+          <div class="text-light-secondary text-sm">
             © 2024 Shyam Rao Sindhia. All rights reserved.
           </div>
           
           <!-- Additional Links -->
           <div class="flex space-x-6 text-sm">
-            <a href="#" class="text-gray-500 hover:text-accent-300 transition-colors">Privacy Policy</a>
-            <a href="#" class="text-gray-500 hover:text-accent-300 transition-colors">Terms of Use</a>
-            <a href="#" class="text-gray-500 hover:text-accent-300 transition-colors">Sitemap</a>
+            <a href="#" class="text-light-secondary hover:text-accent-primary transition-colors">Privacy Policy</a>
+            <a href="#" class="text-light-secondary hover:text-accent-primary transition-colors">Terms of Use</a>
+            <a href="#" class="text-light-secondary hover:text-accent-primary transition-colors">Sitemap</a>
           </div>
         </div>
       </div>
 
       <!-- Scroll to Top Button -->
-      <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-accent-500 hover:bg-accent-600 text-white p-3 rounded-full shadow-lg transition-colors">
+      <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-accent-primary hover:bg-accent-light text-light-primary p-3 rounded-full shadow-lg transition-colors">
         <i class="fas fa-arrow-up"></i>
       </button>
     </div>
   </footer>
 </div>
 </htmlCode>
+
